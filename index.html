@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NOVA SHUYA 🌍 - Le Réseau des Talents</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI',Arial,sans-serif}
+body{background:#000;color:#fff;padding-bottom:90px}
+header{background:linear-gradient(180deg,#111,#000);padding:20px 14px 14px;text-align:center;position:sticky;top:0;z-index:50;border-bottom:1px solid #222}
+header h1{font-size:30px;letter-spacing:4px;font-weight:900}
+header h1 span{color:#ff2d55}
+header .slogan{font-size:12px;color:#aaa;margin-top:4px}
+header .points{margin-top:12px;background:#111;border:1px solid #222;border-radius:14px;padding:10px}
+header .points b{color:gold}
+.points-bar{background:#222;height:10px;border-radius:10px;margin-top:8px;overflow:hidden}
+.points-bar div{background:linear-gradient(90deg,gold,#ff2d55);height:100%;transition:width .5s}
+.live-box{background:linear-gradient(135deg,#1a0005,#111);margin:14px;border-radius:20px;padding:16px;border:1px solid #ff2d55;text-align:center}
+.live-box input{width:100%;padding:13px;border-radius:14px;border:1px solid #333;background:#000;color:#fff;margin:6px 0;outline:none}
+.btn{display:inline-block;background:#fff;color:#000;padding:11px 16px;border-radius:25px;font-size:13px;margin-top:7px;border:none;cursor:pointer;font-weight:800}
+.btn:active{transform:scale(.97)}
+.btn-red{background:linear-gradient(135deg,#ff2d55,#ff6b6b);color:#fff}
+.btn-gold{background:linear-gradient(135deg,gold,#ffcc00);color:#000}
+.btn-green{background:#00c853;color:#fff}
+.btn-blue{background:#00c6ff;color:#fff}
+.btn-orange{background:#ff8c00;color:#fff}
+.btn-purple{background:#a100ff;color:#fff}
+.btn-dark{background:#222;color:#fff;border:1px solid #444}
+.badge{background:#ff2d55;color:#fff;padding:4px 9px;border-radius:20px;font-size:11px;font-weight:800}
+.badge-new{background:#222;color:#ccc;padding:4px 9px;border-radius:20px;font-size:11px;border:1px solid #333}
+.search{margin:14px;padding:0 14px;display:flex;gap:8px}
+.search input{flex:1;padding:14px 16px;border-radius:30px;border:1px solid #333;background:#111;color:#fff;outline:none}
+.search button{padding:13px 18px;border-radius:30px;border:none;background:#ff2d55;color:#fff;font-weight:800;cursor:pointer}
+.cats{display:flex;gap:8px;overflow-x:auto;padding:0 14px 14px}
+.cats button{white-space:nowrap;padding:10px 16px;border:1px solid #333;border-radius:25px;background:#111;color:#fff;font-weight:700;cursor:pointer;font-size:13px}
+.cats button.active{background:#fff;color:#000}
+.box{background:#111;margin:14px;border-radius:20px;padding:18px;border:1px solid #222;text-align:center}
+.box h2{font-size:18px;margin-bottom:6px}
+.box p{font-size:13px;color:#aaa;line-height:1.5}
+.box input,.box select,.box textarea{width:100%;padding:13px;border-radius:14px;border:1px solid #333;background:#000;color:#fff;margin:6px 0;outline:none}
+.box textarea{height:60px}
+.video{background:#111;margin:14px;border-radius:20px;overflow:hidden;border:1px solid #222}
+.video img{width:100%;height:230px;object-fit:cover;display:block}
+.video video.main{width:100%;height:230px;object-fit:cover;background:#000}
+.video .info{padding:14px;text-align:left}
+.video h3{font-size:16px;font-weight:600;margin-top:5px;line-height:1.4}
+.video p{font-size:13px;color:#aaa;margin-top:4px}
+.publish{background:#111;margin:14px;border-radius:20px;padding:16px;border:1px solid #222}
+.publish input,.publish select,.publish textarea{width:100%;padding:13px;border-radius:14px;border:1px solid #333;background:#000;color:#fff;margin:6px 0;outline:none}
+.publish textarea{height:65px}
+.file-btn{display:block;text-align:center;background:#000;padding:14px;border-radius:14px;font-weight:800;margin:6px 0;border:1px dashed #555;cursor:pointer}
+.check{display:flex;gap:10px;align-items:flex-start;background:#000;border:1px solid #333;border-radius:14px;padding:12px;margin:6px 0;text-align:left;font-size:13px;line-height:1.4}
+.check input{width:20px;height:20px;margin:0;accent-color:#ff2d55}
+#preview{width:100%;border-radius:14px;display:none;margin-top:8px;max-height:320px;object-fit:cover}
+#previewVideo{width:100%;border-radius:14px;display:none;margin-top:8px}
+.top-box{background:#111;margin:14px;border-radius:20px;padding:16px;border:1px solid #222;text-align:left}
+.top-item{display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid #222;font-size:14px}
+.actions{padding:0 14px 14px;display:flex;flex-wrap:wrap;gap:7px}
+.actions span{cursor:pointer;padding:9px 12px;border-radius:20px;background:#222;font-size:12px;font-weight:700}
+.actions span.liked{background:#fff;color:#000}
+.actions span.blocked{opacity:.4;cursor:not-allowed}
+.comments{padding:0 14px 14px;font-size:13px;text-align:left}
+.comments div{background:#1e1e1e;padding:8px 11px;border-radius:12px;margin-top:6px;display:flex;justify-content:space-between;gap:8px;align-items:center}
+.comments div button{background:#333;color:#fff;border:none;padding:4px 8px;border-radius:10px;font-size:11px;cursor:pointer}
+.mystere-img{width:135px;height:135px;border-radius:50%;margin:14px auto;border:3px solid gold;object-fit:cover;filter:blur(18px) brightness(.2);display:block}
+.mystere-img.revealed{filter:none}
+#roue{font-size:65px;transition:transform 2.5s cubic-bezier(.1,.9,.2,1);display:inline-block}
+.bar-wrap{display:flex;height:14px;border-radius:10px;overflow:hidden;background:#333;margin:10px 0}
+.oracle-opt{width:100%;padding:13px;border-radius:14px;border:1px solid #444;background:#000;color:#fff;margin:5px 0;text-align:left;cursor:pointer}
+.oracle-opt.selected{border-color:gold;background:#332200}
+.card-mini{background:#000;border:1px solid #333;border-radius:14px;padding:13px;margin:9px 0;text-align:left;font-size:14px;line-height:1.5}
+.section-title{text-align:center;padding:20px 14px 6px}
+</style>
+</head>
+<body>
+
+<header>
+<h1>NOVA <span>SHUYA</span> 🌍</h1>
+<div class="slogan">LE RÉSEAU DES TALENTS • 🇨🇮 🇸🇳 🇲🇱 🇳🇬 🇫🇷 🇨🇲 🇬🇳</div>
+<div class="points">⭐ <b id="monNiveau">NOUVEAU 🌱</b> • <b id="mesPoints">0 points NOVA</b> • 🚨 <b id="signalesCount">0 signalements</b><div class="points-bar"><div id="pointsBar" style="width:0%"></div></div><div style="font-size:11px;color:#888;margin-top:6px">Like = +1 • Commentaire = +2 • Vote = +5 • Prédiction juste = +100</div></div>
+</header>
+
+<!-- LIVE -->
+<div class="live-box">
+<span class="badge">● LIVE</span> <b style="font-size:16px">NOVA SHUYA EN DIRECT</b>
+<p id="liveStatus" style="font-size:13px;color:#aaa;margin:8px 0">Aucun LIVE en ce moment. Sois le premier !</p>
+<input id="liveNom" placeholder="Ton nom pour le LIVE - ex: Aïcha">
+<input id="liveTitre" placeholder="Titre du LIVE - ex: Je chante en direct !">
+<label class="check" style="background:#000"><input type="checkbox" id="liveAutorise" checked> <span>✅ J'autorise les autres à <b>aimer, commenter et partager</b> mon LIVE. Si je décoche, personne ne peut partager mon LIVE.</span></label>
+<button class="btn btn-red" style="width:100%;padding:14px;font-size:15px" onclick="creerLive()">🔴 CRÉER MON LIVE</button>
+<button class="btn" style="width:100%;padding:14px;font-size:15px" onclick="regarderLive()">👀 REGARDER LE LIVE / SUIVRE LE DIRECT</button>
+<div id="liveList"></div>
+</div>
+
+<div class="search"><input id="recherche" placeholder="🔍 Rechercher un nom, un talent..." oninput="rechercher()"><button onclick="rechercher()">Chercher</button></div>
+<div class="cats">
+<button class="active" onclick="filtrer(this,'tout')">🏠 Accueil</button>
+<button onclick="filtrer(this,'news')">📰 Actualité</button>
+<button onclick="filtrer(this,'foot')">⚽ Football</button>
+<button onclick="filtrer(this,'pol')">🏛️ Politique</button>
+<button onclick="filtrer(this,'humour')">😂 Humour</button>
+<button onclick="filtrer(this,'star')">⭐ Stars</button>
+<button onclick="filtrer(this,'talent')">🔥 Talents</button>
+<button onclick="filtrer(this,'live')">🔴 LIVE</button>
+<button onclick="filtrer(this,'debat')">🧠 Débat</button>
+<button onclick="filtrer(this,'emploi')">💼 Emploi</button>
+<button onclick="filtrer(this,'parents')">👨‍👩‍👧 Parents</button>
+</div>
+
+<div class="top-box"><h3>🏆 TOP TALENTS DE LA SEMAINE</h3><div id="topList">Chargement...</div></div>
+
+<!-- PUBLIER -->
+<div class="publish">
+<h3>✍️ Publie - Quoi de neuf ?</h3>
+<input id="nom" placeholder="Ton Nom - ex: Aïcha de Dakar">
+<input id="whatsapp" placeholder="Ton WhatsApp ex: 2250545061716">
+<select id="categorie">
+<option value="talent">🔥 Je suis un Talent</option>
+<option value="news">📰 Actualité</option>
+<option value="foot">⚽ Football</option>
+<option value="pol">🏛️ Politique</option>
+<option value="humour">😂 Humour</option>
+<option value="star">⭐ Stars</option>
+<option value="live">🔴 Je suis en LIVE</option>
+<option value="debat">🧠 Débat</option>
+<option value="emploi">💼 Emploi</option>
+<option value="business">💰 Business</option>
+<option value="parents">👨‍👩‍👧 Parents</option>
+<option value="confession">👻 Confession Anonyme</option>
+</select>
+<textarea id="texte" placeholder="Écris ton actualité, ton talent..."></textarea>
+<label class="file-btn" for="photoFile">📸 CHOISIR PHOTO OU VIDÉO</label>
+<input id="photoFile" type="file" accept="image/*,video/*" style="display:none" onchange="voirPhoto(event)">
+<img id="preview"><video id="previewVideo" controls></video>
+<!-- NOUVEAU : AUTORISATIONS -->
+<label class="check"><input type="checkbox" id="autorisePartage" checked> <span>✅ <b>J'autorise</b> les autres à <b>partager</b> mon contenu. Si je décoche, personne ne peut partager.</span></label>
+<label class="check"><input type="checkbox" id="autoriseTelechargement" checked> <span>⬇️ <b>J'autorise</b> les autres à <b>télécharger</b> ma photo / vidéo. Si je décoche, le bouton Télécharger est bloqué.</span></label>
+<button class="btn btn-red" style="width:100%;padding:14px;font-size:15px" onclick="publier()">🚀 PUBLIER MAINTENANT</button>
+</div>
+
+<div style="text-align:center;padding:8px 14px"><h2>📰 FIL D'ACTUALITÉ - ACCUEIL</h2><p style="font-size:13px;color:#aaa">❤️ Aime • 💬 Commente • ↗️ Partage • ⬇️ Télécharge (si autorisé) • 🚨 Signale si c'est méchant</p></div>
+<div id="feed"></div>
+
+<div class="section-title"><h2>✨ DÉCOUVRE LES 20 INNOVATIONS NOVA</h2><p style="font-size:13px;color:#aaa">Facebook et TikTok n'ont pas ça. NOVA oui.</p></div>
+
+<div class="box" style="border:2px solid gold;background:linear-gradient(135deg,#1a0033,#000)"><h2 style="color:gold">1. 🔮 NOVA MYSTÈRE</h2><p>Devine qui est caché !</p><img id="mystereImg" class="mystere-img" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=400" onerror="this.style.display='none'"><p style="color:gold">💡 Indice : Elle vient de Bamako, elle chante comme une reine 👑</p><input id="devineNom" placeholder="C'est qui ? Ex: Mariam"><button class="btn btn-gold" style="width:100%" onclick="deviner()">🔮 JE DEVINE !</button><button class="btn btn-dark" style="width:100%" onclick="devoiler()">👁️ DÉVOILER (ADMIN)</button><p id="devineResult" style="color:gold"></p></div>
+<div class="box" style="border:2px solid #a100ff"><h2>2. 🔮 NOVA ORACLE</h2><p>Prédis l'avenir ! Si tu as raison, +100 points !</p><button class="oracle-opt" onclick="choisirOracle(this,'Mariam')">👑 Mariam va gagner le Duel</button><button class="oracle-opt" onclick="choisirOracle(this,'Aicha')">⭐ Aïcha va gagner</button><button class="btn btn-purple" style="width:100%" onclick="validerOracle()">🔮 VALIDER MA PRÉDICTION</button><p id="oracleResult" style="color:gold"></p></div>
+<div class="box" style="border:2px solid #ff2d55"><h2>3. ⚔️ NOVA DUEL</h2><p>Vote, ça change en direct !</p><div style="display:flex;gap:10px;align-items:center"><div style="flex:1"><b>MARIAM 🇲🇱</b><br><span id="votesA" style="color:#ff2d55">128 votes</span></div><div>VS</div><div style="flex:1"><b>AÏCHA 🇸🇳</b><br><span id="votesB" style="color:gold">132 votes</span></div></div><div class="bar-wrap"><div id="barA" style="width:49%;background:#ff2d55"></div><div id="barB" style="width:51%;background:gold"></div></div><button class="btn btn-red" onclick="voterDuel('A')">🔥 VOTER MARIAM</button><button class="btn btn-gold" onclick="voterDuel('B')">⭐ VOTER AÏCHA</button><p id="duelMsg"></p></div>
+<div class="box" style="border:2px solid #ff2d55"><h2>4. 👑 BATTLE ROYALE</h2><p>8 talents, 1 seul Roi !</p><div id="battleList" style="text-align:left"></div></div>
+<div class="box" style="border:2px dashed gold"><h2>5. 🎡 ROUE NOVA</h2><div id="roue">🎡</div><p id="roueResult" style="color:gold;font-weight:bold">Tourne pour gagner !</p><button class="btn btn-gold" style="width:100%" onclick="tournerRoue()">🎡 TOURNER LA ROUE !</button></div>
+<div class="box" style="border:2px solid #00c6ff"><h2>6. 🎤 NOVA VOIX - Sans visage</h2><p>Pour les timides, juste ta voix !</p><div class="card-mini"><b>🎤 Aïcha - Voix cachée</b><br><audio controls style="width:100%"><source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3"></audio><button class="btn" onclick="voterVoix()">❤️ Voter pour cette voix (+5 pts)</button> <button class="btn btn-dark" onclick="signalerContenu('Voix de Aïcha','voix')">🚨 Signaler</button></div><textarea id="voixText" placeholder="Décris ta voix..."></textarea><button class="btn btn-blue" style="width:100%" onclick="publierVoix()">🎤 PUBLIER MA VOIX</button></div>
+<div class="box" style="border:2px solid #00c853"><h2>7. 🕰️ CAPSULE TEMPORELLE</h2><textarea id="capsuleText" placeholder="Dans 1 mois, je serai star !"></textarea><select id="capsuleDelai"><option value="7">Ouvrir dans 7 jours</option><option value="30">Ouvrir dans 30 jours</option><option value="1">Ouvrir demain (test)</option></select><button class="btn btn-green" style="width:100%" onclick="creerCapsule()">🕰️ SCELLER MA CAPSULE</button><div id="capsuleList" style="text-align:left"></div></div>
+<div class="box" style="border:2px solid #00c6ff"><h2>8. 📍 NOVA RADAR - Près de toi</h2><select id="villeRadar" onchange="changerVille()"><option value="Abidjan">📍 Abidjan 🇨🇮</option><option value="Dakar">📍 Dakar 🇸🇳</option><option value="Bamako">📍 Bamako 🇲🇱</option><option value="Lagos">📍 Lagos 🇳🇬</option><option value="Paris">📍 Paris 🇫🇷</option><option value="Douala">📍 Douala 🇨🇲</option><option value="Conakry">📍 Conakry 🇬🇳</option></select><div id="radarResult" style="text-align:left;margin-top:10px"></div><button class="btn btn-blue" style="width:100%" onclick="changerVille()">🔍 VOIR LES TALENTS DE MA VILLE</button></div>
+<div class="box" style="border:2px dashed #ff2d55"><h2>9. 🎯 DÉFI 24H</h2><p><b>Défi :</b> Fais rire en 10 secondes ! 😂</p><p id="defiCount">🔥 47 participants !</p><textarea id="defiText" placeholder="Décris ta vidéo de défi..."></textarea><button class="btn btn-red" style="width:100%" onclick="participerDefi()">🎯 JE PARTICIPE !</button></div>
+<div class="box"><h2>10. 👻 CONFESSION ANONYME</h2><textarea id="confessionText" placeholder="Écris ta confession anonyme..."></textarea><button class="btn" style="width:100%" onclick="publierConfession()">👻 PUBLIER ANONYMEMENT</button></div>
+<div class="box" style="border:2px solid #00c853"><h2>11. 🛍️ NOVA MARCHÉ</h2><div class="card-mini"><b>💇‍♀️ Aïcha - Coiffure à domicile - Abidjan</b><br>💰 10.000 FCFA • 📍 Cocody<br><button class="btn btn-green" onclick="window.open('https://wa.me/2250545061716','_blank')">💬 Commander sur WhatsApp</button> <button class="btn btn-dark" onclick="signalerContenu('Aïcha - Marché','marche')">🚨 Signaler</button></div><input id="marcheTitre" placeholder="Ton produit - Ex: Je coiffe à domicile"><input id="marchePrix" placeholder="Ton prix - Ex: 10.000 FCFA"><button class="btn btn-green" style="width:100%" onclick="publierMarche()">🛍️ METTRE EN VENTE</button></div>
+<div class="box" style="border:2px solid gold"><h2 style="color:gold">12. ⭐ POINTS NOVA + NIVEAUX</h2><p>🌱 Nouveau → 🔥 Talent → ⭐ Star → 👑 Légende → 👑👑 ROI<br>Tu as <b id="mesPoints2">0</b> points !</p></div>
+<div class="box" style="border:2px solid #ff8c00;background:linear-gradient(135deg,#1a0f00,#000)"><h2>13. 🧠 NOVA DÉBAT - Intellectuels</h2><p><b>Débat :</b> "L'école en Afrique doit-elle changer ?"<br>Ici on débat avec respect.</p><div style="display:flex;gap:8px"><button class="btn btn-green" style="flex:1" onclick="voterDebat('POUR')">👍 POUR</button><button class="btn btn-red" style="flex:1" onclick="voterDebat('CONTRE')">👎 CONTRE</button></div><div class="bar-wrap"><div id="barPour" style="width:62%;background:#00c853"></div><div id="barContre" style="width:38%;background:#ff2d55"></div></div><p id="debatResult">62% POUR • 38% CONTRE • 214 votes</p><textarea id="debatArg" placeholder="Ton argument intelligent..."></textarea><button class="btn btn-orange" style="width:100%" onclick="publierDebat()">🧠 PUBLIER MON ARGUMENT</button></div>
+<div class="box" style="border:2px solid #00c853"><h2>14. 💼 NOVA EMPLOI</h2><div class="card-mini"><b>💼 On cherche Nounou - Cocody</b><br>💰 60.000 FCFA / mois<br><button class="btn btn-green" onclick="alert('Postule sur WhatsApp !')">📩 POSTULER</button> <button class="btn btn-dark" onclick="signalerContenu('Offre Nounou','emploi')">🚨 Signaler</button></div><input id="emploiTitre" placeholder="Ton offre - Ex: Je cherche une vendeuse"><input id="emploiSalaire" placeholder="Salaire - Ex: 50.000 FCFA / mois"><button class="btn btn-green" style="width:100%" onclick="publierEmploi()">💼 PUBLIER UNE OFFRE</button></div>
+<div class="box" style="border:2px solid #a100ff"><h2>15. 👨‍🏫 NOVA MENTOR</h2><div class="card-mini"><b>👨‍🏫 Mentor Kader - Entrepreneur à Abidjan</b><br>"J'ai créé 3 entreprises, je t'aide."<br><button class="btn btn-purple" onclick="demanderMentor('Kader')">🙏 DEMANDER CE MENTOR</button></div><select id="mentorDomaine"><option>Je veux un mentor pour : Mon Business</option><option>Je veux un mentor pour : Chanter / Musique</option><option>Je veux un mentor pour : Parler en public</option><option>Je veux un mentor pour : Mes études</option></select><button class="btn btn-purple" style="width:100%" onclick="demanderMentor('général')">👨‍🏫 TROUVER MON MENTOR</button></div>
+<div class="box" style="border:2px solid gold"><h2>16. 📚 NOVA SAVOIR</h2><div class="card-mini" style="border-color:gold"><b>📚 Leçon du jour : Comment économiser 10.000 FCFA par mois ?</b><br>1. Note tout ce que tu dépenses.<br>2. Mets 10% de côté.<br>3. Ne dépense pas pour impressionner les autres.<br><button class="btn btn-gold" onclick="apprendreLecon()">✅ J'AI APPRIS ! +10 pts</button></div></div>
+<div class="box" style="border:2px solid #00c853"><h2>17. 💰 NOVA ENTREPRENEUR</h2><div class="card-mini"><b>💰 Idée de Fatou : Jus naturel à Dakar</b><br>"Je veux vendre du jus de bissap bio." • ❤️ 89 votes<br><button class="btn btn-green" onclick="soutenirBusiness()">👍 JE SOUTIENS</button></div><textarea id="businessIdea" placeholder="Ton idée de business..."></textarea><button class="btn btn-green" style="width:100%" onclick="publierBusiness()">💰 PUBLIER MON IDÉE</button></div>
+<div class="box" style="border:2px solid #00c6ff"><h2>18. 🩺 NOVA SANTÉ & CONSEIL</h2><div class="card-mini"><b>🩺 Question anonyme :</b> "Mon enfant ne dort pas bien, que faire ?"<br><b>👨‍⚕️ Dr Koné :</b> "Évite les écrans 1h avant de dormir."</div><textarea id="santeQ" placeholder="Ta question anonyme..."></textarea><button class="btn btn-blue" style="width:100%" onclick="publierSante()">🩺 POSER MA QUESTION</button></div>
+<div class="box" style="border:2px solid #ff8c00"><h2>19. 👨‍👩‍👧 NOVA PARENTS</h2><div class="card-mini"><b>👨‍👩‍👧 Sujet : Comment protéger mon enfant sur internet ?</b><br>💬 34 parents en discutent.<br><button class="btn btn-orange" onclick="rejoindreParents()">👨‍👩‍👧 REJOINDRE LA DISCUSSION</button></div><textarea id="parentsText" placeholder="Ta question de parent..."></textarea><button class="btn btn-orange" style="width:100%" onclick="publierParents()">👨‍👩‍👧 POSER MA QUESTION</button></div>
+<div class="box" style="border:2px solid #fff"><h2>20. ✅ NOVA VÉRITÉ - Vrai ou Faux ?</h2><p><b>Info du jour :</b><br>"Boire de l'eau avec du citron le matin guérit toutes les maladies."</p><button class="btn btn-green" onclick="repondreVerite(true)">✅ C'EST VRAI</button><button class="btn btn-red" onclick="repondreVerite(false)">❌ C'EST FAUX</button><p id="veriteResult" style="color:gold"></p></div>
+
+<div style="text-align:center;padding:20px 14px;color:#777;font-size:12px">NOVA SHUYA © 2026 - Le Réseau des Talents 🌍<br>Fait avec ❤️ à Abidjan • Signaler = Protéger</div>
+
+<script>
+function lire(k,d){try{var v=localStorage.getItem(k);if(!v)return d;return JSON.parse(v)}catch(e){return d}}
+function ecrire(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}
+function lireT(k,d){try{var v=localStorage.getItem(k);return v===null?d:v}catch(e){return d}}
+function echapper(t){return String(t||"").replace(/</g,"&lt;").replace(/>/g,"&gt;")}
+var photoChoisie="",typeMedia="image";
+var points=parseInt(lireT('nova_points_final2','0'))||0;
+var posts=lire('nova_posts_final2',null);
+var mesLikes=lire('nova_likes_final2',[]);
+var lives=lire('nova_lives_final2',[]);
+var votes=lire('nova_duel_final2',{A:128,B:132});
+var capsules=lire('nova_capsules_final2',[]);
+var debatVotes=lire('nova_debat_final2',{pour:132,contre:82});
+var battle=lire('nova_battle_final2',[{nom:"Mariam 🇲🇱",votes:210},{nom:"Aïcha 🇸🇳",votes:195},{nom:"Kévin 🇨🇮",votes:180},{nom:"Moussa 🇸🇳",votes:150},{nom:"Nina 🇨🇲",votes:120},{nom:"Ibrahim 🇲🇱",votes:95},{nom:"Chidinma 🇳🇬",votes:80},{nom:"Léa 🇫🇷",votes:60}]);
+var defiCount=parseInt(lireT('nova_defi_final2','47'))||47;
+var bloques=lire('nova_bloques_final2',[]);
+var signalements=lire('nova_signalements_final2',[]);
+var oracleChoix="",deg=0;
+function sauver(){ecrire('nova_posts_final2',posts);ecrire('nova_likes_final2',mesLikes);ecrire('nova_lives_final2',lives);ecrire('nova_duel_final2',votes);ecrire('nova_capsules_final2',capsules);ecrire('nova_debat_final2',debatVotes);ecrire('nova_battle_final2',battle);ecrire('nova_bloques_final2',bloques);ecrire('nova_signalements_final2',signalements);try{localStorage.setItem('nova_points_final2',String(points));localStorage.setItem('nova_defi_final2',String(defiCount))}catch(e){}}
+function majPoints(){var a=document.getElementById('mesPoints');if(a)a.textContent=points+" points NOVA";var b=document.getElementById('mesPoints2');if(b)b.textContent=points;var c=document.getElementById('signalesCount');if(c)c.textContent=signalements.length+" signalements";var niv="NOUVEAU 🌱";if(points>=1000)niv="ROI DE NOVA 👑👑";else if(points>=500)niv="LÉGENDE 👑";else if(points>=100)niv="STAR ⭐";else if(points>=20)niv="TALENT EN MONTÉE 🔥";var n=document.getElementById('monNiveau');if(n)n.textContent=niv;var bar=document.getElementById('pointsBar');if(bar)bar.style.width=Math.min(100,points/10)+"%";}
+function ajouterPoints(n){points+=n;majPoints();sauver();}
+function defauts(){return[
+{nom:"NOVA NEWS ⚽",cat:"foot",texte:"Côte d'Ivoire vs Sénégal : Qui va gagner dimanche ?",img:"https://images.unsplash.com/photo-1579952363873-27f3bade9f55?w=800",type:"image",likes:128,wa:"",date:"Il y a 8 min",comments:[],id:"d1",autorisePartage:true,autoriseTelechargement:true},
+{nom:"Kévin Kouassi 🇨🇮",cat:"humour",texte:"Quand tu dragues au marché d'Adjamé 😂😂",img:"https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800",type:"image",likes:89,wa:"2250545061716",date:"Il y a 20 min",comments:[],id:"d2",autorisePartage:true,autoriseTelechargement:true},
+{nom:"Mariam Traoré 🇲🇱",cat:"talent",texte:"Nouveau shooting à Bamako ! Vous en pensez quoi ?",img:"https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=800",type:"image",likes:67,wa:"",date:"Il y a 32 min",comments:[],id:"d3",autorisePartage:true,autoriseTelechargement:false},
+{nom:"🧠 Prof Koné - Débat",cat:"debat",texte:"L'école doit apprendre à créer des entreprises, pas juste à chercher un emploi. Vous en pensez quoi ?",img:"",type:"image",likes:112,wa:"",date:"Il y a 40 min",comments:[],id:"d4",autorisePartage:true,autoriseTelechargement:true},
+{nom:"👻 Anonyme",cat:"confession",texte:"J'aime quelqu'un dans mon quartier depuis 2 ans, mais je n'ai jamais osé lui parler...",img:"",type:"image",likes:95,wa:"",date:"Il y a 50 min",comments:[],id:"d5",autorisePartage:false,autoriseTelechargement:false}
+];}
+if(!posts||!posts.length){posts=defauts();sauver();}
+// ===== SIGNALER / BLOQUER - 1 CLIC =====
+function signalerPost(i){
+  var p=posts[i];
+  var raison=prompt("🚨 SIGNALER : "+p.nom+"\n\nPourquoi tu signales ?\n1 = Vulgaire / Grossier\n2 = Haineux / Méchant\n3 = Arnaque / Faux\n4 = Mauvaise intention\n\nTape 1, 2, 3 ou 4 :");
+  if(!raison) return;
+  var labels={"1":"Vulgaire / Grossier","2":"Haineux / Méchant","3":"Arnaque / Faux","4":"Mauvaise intention"};
+  var r=labels[raison]||"Contenu inapproprié";
+  signalements.push({nom:p.nom,texte:p.texte,raison:r,date:new Date().toLocaleString()});
+  if(bloques.indexOf(p.nom)===-1) bloques.push(p.nom);
+  // Si 3 signalements sur même personne = on le retire
+  var nb=signalements.filter(function(s){return s.nom===p.nom}).length;
+  if(nb>=3){ posts=posts.filter(function(x){return x.nom!==p.nom}); alert("🚨 Cette personne a été signalée "+nb+" fois. Elle est automatiquement bannie de ton fil. Merci de protéger NOVA !"); }
+  else { posts.splice(i,1); alert("🚨 Merci ! Tu as signalé : "+r+"\nCette personne est BLOQUÉE pour toi. Elle ne verra plus tes posts et tu ne verras plus les siens.\nL'admin NOVA a été prévenu."); }
+  sauver(); afficher(); majPoints();
+}
+function signalerCommentaire(postIdx, comIdx){
+  var c=posts[postIdx].comments[comIdx];
+  if(!confirm("🚨 Signaler ce commentaire ?\n\""+c+"\"\n\nLa personne sera bloquée.")) return;
+  signalements.push({nom:"Commentaire",texte:c,raison:"Commentaire haineux / vulgaire",date:new Date().toLocaleString()});
+  posts[postIdx].comments.splice(comIdx,1);
+  sauver(); afficher(); alert("🚨 Commentaire signalé et supprimé. Merci de protéger NOVA !");
+}
+function signalerContenu(nom, type){
+  var raison=prompt("🚨 SIGNALER : "+nom+"\n\n1 = Vulgaire\n2 = Haineux\n3 = Arnaque\n4 = Mauvaise intention\n\nTape 1, 2, 3 ou 4 :");
+  if(!raison) return;
+  signalements.push({nom:nom,texte:type,raison:"Signalé : "+raison,date:new Date().toLocaleString()});
+  if(bloques.indexOf(nom)===-1) bloques.push(nom);
+  sauver(); majPoints(); alert("🚨 Merci ! "+nom+" a été signalé et bloqué pour toi.");
+}
+function signalerLive(idx){
+  if(!confirm("🚨 Signaler ce LIVE ? La personne sera bloquée.")) return;
+  var l=lives[idx];
+  signalements.push({nom:l.nom,texte:l.titre,raison:"LIVE signalé",date:new Date().toLocaleString()});
+  if(bloques.indexOf(l.nom)===-1) bloques.push(l.nom);
+  lives.splice(idx,1); sauver(); afficherLives(); alert("🚨 LIVE signalé et bloqué. Merci !");
+}
+// ===== PARTAGER / TELECHARGER AVEC AUTORISATION =====
+function partagerPost(i){
+  var p=posts[i];
+  if(p.autorisePartage===false){ alert("🔒 L'auteur n'autorise PAS le partage de ce contenu.\nRespecte son choix. Tu peux aimer ou commenter, mais pas partager."); return; }
+  var link="https://nova-shuya-officiel.netlify.app";
+  if(navigator.share){ navigator.share({title:"NOVA SHUYA - "+p.nom,text:p.texte,url:link}); }
+  else { prompt("Copie ce lien (partage autorisé par l'auteur) :",link); }
+  ajouterPoints(2); alert("Partagé ! ↗️ +2 points ! (Autorisé par l'auteur)");
+}
+function telechargerPost(i){
+  var p=posts[i];
+  if(!p.img){ alert("Il n'y a pas de photo / vidéo à télécharger sur ce post."); return; }
+  if(p.autoriseTelechargement===false){ alert("🔒 L'auteur n'autorise PAS le téléchargement de ce contenu.\nTu peux aimer et commenter, mais pas télécharger."); return; }
+  var a=document.createElement('a'); a.href=p.img; a.download="nova-shuya-"+p.id; document.body.appendChild(a); a.click(); document.body.removeChild(a);
+  ajouterPoints(2); alert("Téléchargé ! ⬇️ +2 points ! (Autorisé par l'auteur)");
+}
+function partagerLive(idx){
+  var l=lives[idx];
+  if(l.autorise===false){ alert("🔒 L'auteur du LIVE n'autorise PAS le partage."); return; }
+  var link=l.lien;
+  if(navigator.share){ navigator.share({title:"LIVE NOVA - "+l.nom,text:l.titre,url:link}); } else { prompt("Copie le lien du LIVE :",link); }
+  ajouterPoints(2); alert("LIVE partagé ! ↗️ +2 points !");
+}
+// ===== INNOVATIONS =====
+function deviner(){var v=document.getElementById('devineNom').value.trim();if(!v)return alert("Écris ta devinette !");if(lireT('nova_devine_final2','')==='oui')return alert("Tu as déjà deviné aujourd'hui !");try{localStorage.setItem('nova_devine_final2','oui')}catch(e){}if(v.toLowerCase().indexOf('mariam')>-1){document.getElementById('devineResult').textContent="🎉 BRAVO ! C'est MARIAM ! +50 points !";document.getElementById('mystereImg').classList.add('revealed');ajouterPoints(50)}else{document.getElementById('devineResult').textContent="❌ Ce n'est pas "+v+" ! Indice : elle vient de Bamako..."}}
+function devoiler(){var c=prompt("Code ADMIN ?");if(c==="NOVA2026"){document.getElementById('mystereImg').classList.add('revealed');alert("Dévoilé ! C'était Mariam Traoré 🇲🇱")}else alert("Code incorrect.")}
+function choisirOracle(el,val){document.querySelectorAll('.oracle-opt').forEach(function(b){b.classList.remove('selected')});el.classList.add('selected');oracleChoix=val}
+function validerOracle(){if(!oracleChoix)return alert("Choisis d'abord !");if(lireT('nova_oracle_final2',''))return alert("Tu as déjà prédit aujourd'hui !");try{localStorage.setItem('nova_oracle_final2',oracleChoix)}catch(e){}if(oracleChoix==='Mariam'){ajouterPoints(100);document.getElementById('oracleResult').textContent="🎉 BRAVO ! JUSTE ! +100 points !"}else{document.getElementById('oracleResult').textContent="🔮 Prédiction enregistrée : "+oracleChoix}alert("Prédiction enregistrée !")}
+function majDuel(){var t=votes.A+votes.B||1;document.getElementById('votesA').textContent=votes.A+" votes";document.getElementById('votesB').textContent=votes.B+" votes";document.getElementById('barA').style.width=(votes.A/t*100)+"%";document.getElementById('barB').style.width=(votes.B/t*100)+"%";}
+function voterDuel(q){if(lireT('nova_vote_duel_final2',''))return alert("Tu as déjà voté !");try{localStorage.setItem('nova_vote_duel_final2','oui')}catch(e){}votes[q]++;sauver();majDuel();ajouterPoints(5);document.getElementById('duelMsg').textContent=q==='A'?"✅ Tu as voté pour MARIAM !":"✅ Tu as voté pour AÏCHA !";alert("Vote enregistré ! +5 points !")}
+function afficherBattle(){var el=document.getElementById('battleList');if(!el)return;el.innerHTML=battle.map(function(b,i){return "<div style='display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid #222'><span>"+(i+1)+". "+echapper(b.nom)+"</span><span>❤️ "+b.votes+" <button class='btn btn-red' style='padding:4px 10px' onclick=\"voterBattle("+i+")\">Voter</button></span></div>"}).join('')}
+function voterBattle(i){battle[i].votes+=1;ajouterPoints(5);sauver();afficherBattle();alert("Vote pour "+battle[i].nom+" ! +5 points !")}
+function tournerRoue(){if(lireT('nova_roue_final2','')===new Date().toDateString())return alert("Tu as déjà tourné aujourd'hui !");try{localStorage.setItem('nova_roue_final2',new Date().toDateString())}catch(e){}deg+=720+Math.floor(Math.random()*360);document.getElementById('roue').style.transform='rotate('+deg+'deg)';setTimeout(function(){var c=["🎉 SHOUTOUT !","🏆 TOP TALENT !","🔴 LIVE gratuit !","👑 STAR DU JOUR !"][Math.floor(Math.random()*4)];document.getElementById('roueResult').textContent="🎁 TU AS GAGNÉ : "+c;ajouterPoints(20);alert("FÉLICITATIONS !\n"+c+" +20 points !")},2600)}
+function voterVoix(){ajouterPoints(5);alert("Vote pour cette voix ! +5 points !")}
+function publierVoix(){var t=document.getElementById('voixText').value.trim()||"Écoutez ma voix !";posts.unshift({nom:"🎤 Toi - Voix",cat:"voix",texte:t,img:"",type:"image",likes:0,wa:"",date:"À l'instant",comments:[],id:"voix"+Date.now(),autorisePartage:true,autoriseTelechargement:true});sauver();afficher();ajouterPoints(10);alert("Voix publiée ! +10 points !");document.getElementById('voixText').value=''}
+function creerCapsule(){var t=document.getElementById('capsuleText').value.trim();if(!t)return alert("Écris ta capsule !");var j=parseInt(document.getElementById('capsuleDelai').value)||7;capsules.unshift({texte:t,ouvre:Date.now()+j*86400000});sauver();afficherCapsules();alert("Capsule scellée ! Elle s'ouvrira dans "+j+" jour(s).");document.getElementById('capsuleText').value=''}
+function afficherCapsules(){var el=document.getElementById('capsuleList');if(!el)return;if(!capsules.length){el.innerHTML="<p style='font-size:13px;color:#888'>Aucune capsule.</p>";return}el.innerHTML=capsules.map(function(c){var r=Math.ceil((c.ouvre-Date.now())/86400000);if(r<=0)return "<div style='background:#003300;padding:10px;border-radius:10px;margin-top:6px'>🔓 OUVERTE : <b>"+echapper(c.texte)+"</b></div>";return "<div style='background:#222;padding:10px;border-radius:10px;margin-top:6px'>🔒 S'ouvre dans "+r+" jour(s)...</div>"}).join('')}
+function changerVille(){var v=document.getElementById('villeRadar').value;var d={"Abidjan":["Kévin - Humour 😂 - Yopougon","Aïcha - Chant 🎤 - Cocody"],"Dakar":["Mariam - Danse 💃 - Pikine"],"Bamako":["Mariam Traoré - Chant 🎤"],"Lagos":["Chidinma - Chant 🎤"],"Paris":["Léa - Chant 🎤"],"Douala":["Nina - Danse 💃"],"Conakry":["Mamadou - Rap 🎤"]};document.getElementById('radarResult').innerHTML="<b>📍 Talents à "+echapper(v)+" :</b><br>"+(d[v]||[]).map(function(x){return "• "+echapper(x)}).join("<br>")}
+function participerDefi(){var t=document.getElementById('defiText').value.trim()||"Je participe au défi !";defiCount++;document.getElementById('defiCount').textContent="🔥 "+defiCount+" participants !";posts.unshift({nom:"🎯 Toi - Défi",cat:"defi",texte:t,img:"",type:"image",likes:0,wa:"",date:"À l'instant",comments:[],id:"defi"+Date.now(),autorisePartage:true,autoriseTelechargement:true});sauver();afficher();ajouterPoints(10);alert("Défi participé ! +10 points !");document.getElementById('defiText').value=''}
+function publierConfession(){var t=document.getElementById('confessionText').value.trim();if(!t)return alert("Écris ta confession !");posts.unshift({nom:"👻 Anonyme",cat:"confession",texte:t,img:"",type:"image",likes:0,wa:"",date:"À l'instant - Anonyme",comments:[],id:"conf"+Date.now(),autorisePartage:false,autoriseTelechargement:false});sauver();afficher();ajouterPoints(5);alert("Confession publiée ! +5 points !");document.getElementById('confessionText').value=''}
+function publierMarche(){var t=document.getElementById('marcheTitre').value.trim()||"Mon produit";var p=document.getElementById('marchePrix').value.trim()||"Prix à discuter";posts.unshift({nom:"🛍️ Toi - Marché",cat:"marche",texte:t+" - "+p,img:"",type:"image",likes:0,wa:"",date:"À l'instant",comments:[],id:"marche"+Date.now(),autorisePartage:true,autoriseTelechargement:true});sauver();afficher();alert("Produit en vente !");document.getElementById('marcheTitre').value='';document.getElementById('marchePrix').value=''}
+function voterDebat(ch){if(lireT('nova_debat_vote_final2',''))return alert("Tu as déjà voté !");try{localStorage.setItem('nova_debat_vote_final2',ch)}catch(e){}if(ch==='POUR')debatVotes.pour++;else debatVotes.contre++;var t=debatVotes.pour+debatVotes.contre;document.getElementById('barPour').style.width=(debatVotes.pour/t*100)+"%";document.getElementById('barContre').style.width=(debatVotes.contre/t*100)+"%";document.getElementById('debatResult').textContent=Math.round(debatVotes.pour/t*100)+"% POUR • "+Math.round(debatVotes.contre/t*100)+"% CONTRE • "+t+" votes";ajouterPoints(5);sauver();alert("Vote enregistré ! +5 points !")}
+function publierDebat(){var t=document.getElementById('debatArg').value.trim();if(!t)return alert("Écris ton argument !");posts.unshift({nom:"🧠 Toi - Débat",cat:"debat",texte:t,img:"",type:"image",likes:0,wa:"",date:"À l'instant",comments:[],id:"debat"+Date.now(),autorisePartage:true,autoriseTelechargement:true});sauver();afficher();ajouterPoints(10);alert("Argument publié ! +10 points !");document.getElementById('debatArg').value=''}
+function publierEmploi(){var t=document.getElementById('emploiTitre').value.trim()||"Offre d'emploi";var s=document.getElementById('emploiSalaire').value.trim()||"Salaire à discuter";posts.unshift({nom:"💼 Toi - Emploi",cat:"emploi",texte:t+" - "+s,img:"",type:"image",likes:0,wa:"",date:"À l'instant",comments:[],id:"emploi"+Date.now(),autorisePartage:true,autoriseTelechargement:true});sauver();afficher();alert("Offre publiée !");document.getElementById('emploiTitre').value='';document.getElementById('emploiSalaire').value=''}
+function demanderMentor(n){ajouterPoints(5);alert("Demande envoyée à Mentor "+n+" ! +5 points !")}
+function apprendreLecon(){if(lireT('nova_lecon_final2','')===new Date().toDateString())return alert("Tu as déjà appris aujourd'hui !");try{localStorage.setItem('nova_lecon_final2',new Date().toDateString())}catch(e){}ajouterPoints(10);alert("Leçon apprise ! +10 points !")}
+function soutenirBusiness(){ajouterPoints(5);alert("Tu as soutenu Fatou ! +5 points !")}
+function publierBusiness(){var t=document.getElementById('businessIdea').value.trim();if(!t)return alert("Écris ton idée !");posts.unshift({nom:"💰 Toi - Business",cat:"business",texte:t,img:"",type:"image",likes:0,wa:"",date:"À l'instant",comments:[],id:"biz"+Date.now(),autorisePartage:true,autoriseTelechargement:true});sauver();afficher();ajouterPoints(10);alert("Idée publiée ! +10 points !");document.getElementById('businessIdea').value=''}
+function publierSante(){var t=document.getElementById('santeQ').value.trim();if(!t)return alert("Écris ta question !");posts.unshift({nom:"🩺 Anonyme - Santé",cat:"sante",texte:t,img:"",type:"image",likes:0,wa:"",date:"À l'instant",comments:[],id:"sante"+Date.now(),autorisePartage:false,autoriseTelechargement:false});sauver();afficher();alert("Question envoyée anonymement !");document.getElementById('santeQ').value=''}
+function rejoindreParents(){ajouterPoints(5);alert("Bienvenue dans l'espace Parents ! +5 points !")}
+function publierParents(){var t=document.getElementById('parentsText').value.trim();if(!t)return alert("Écris ta question !");posts.unshift({nom:"👨‍👩‍👧 Parent Anonyme",cat:"parents",texte:t,img:"",type:"image",likes:0,wa:"",date:"À l'instant",comments:[],id:"par"+Date.now(),autorisePartage:true,autoriseTelechargement:true});sauver();afficher();ajouterPoints(10);alert("Question publiée ! +10 points !");document.getElementById('parentsText').value=''}
+function repondreVerite(v){if(lireT('nova_verite_final2',''))return alert("Tu as déjà répondu aujourd'hui !");try{localStorage.setItem('nova_verite_final2','oui')}catch(e){}if(v===false){ajouterPoints(50);document.getElementById('veriteResult').textContent="🎉 BRAVO ! C'est FAUX ! +50 points !"}else{document.getElementById('veriteResult').textContent="❌ C'est FAUX ! Le citron ne guérit pas tout."}}
+// ===== LIVE AVEC LIKE / COMMENT / PARTAGE / SIGNALER =====
+function creerLive(){
+  var nom=document.getElementById('liveNom').value.trim()||'Animateur NOVA';
+  var titre=document.getElementById('liveTitre').value.trim()||'LIVE NOVA SHUYA en direct !';
+  var autorise=document.getElementById('liveAutorise').checked;
+  var code='NOVA-'+Date.now().toString().slice(-6);
+  var lien='https://meet.jit.si/'+code;
+  var live={nom:nom,titre:titre,lien:lien,autorise:autorise,likes:0,comments:[]};
+  lives.unshift(live); sauver(); afficherLives();
+  posts.unshift({nom:nom+" 🔴 EN LIVE",cat:"live",texte:titre+" - Appuie sur REGARDER LE LIVE !",img:"",type:"image",likes:0,wa:"",date:"EN DIRECT 🔴",comments:[],id:"live"+Date.now(),liveLink:lien,isLive:true,autorisePartage:autorise,autoriseTelechargement:false,liveIndex:0});
+  sauver(); afficher(); alert("Ton LIVE est créé ! 🔴\nPartage ce lien :\n"+lien); window.open(lien,"_blank");
+}
+function regarderLive(){if(!lives.length)return alert("Aucun LIVE en cours. Reviens bientôt ou crée ton propre LIVE !");window.open(lives[0].lien,"_blank")}
+function likeLive(idx){ lives[idx].likes=(lives[idx].likes||0)+1; sauver(); afficherLives(); ajouterPoints(1); alert("❤️ Tu as aimé ce LIVE !"); }
+function commenterLive(idx){ var t=prompt("💬 Écris ton commentaire pour ce LIVE :"); if(!t) return; lives[idx].comments=lives[idx].comments||[]; lives[idx].comments.push(t); sauver(); afficherLives(); ajouterPoints(2); alert("Commentaire sur le LIVE publié ! +2 points !"); }
+function afficherLives(){
+  var el=document.getElementById('liveList');var st=document.getElementById('liveStatus');
+  if(!lives.length){st.textContent="Aucun LIVE en ce moment. Sois le premier !";el.innerHTML="";return}
+  st.textContent="🔴 "+lives.length+" LIVE(S) EN COURS !";
+  el.innerHTML=lives.map(function(l,idx){
+    var coms=(l.comments||[]).map(function(c){return "<div style='background:#222;padding:6px 10px;border-radius:10px;margin-top:5px;font-size:13px'>💬 "+echapper(c)+"</div>"}).join('');
+    return "<div style='background:#000;padding:12px;border-radius:12px;margin-top:8px;text-align:left;border:1px solid #333'><b>🔴 "+echapper(l.nom)+"</b> - "+echapper(l.titre)+"<br><span style='font-size:13px;color:#aaa'>❤️ "+(l.likes||0)+" likes • 💬 "+(l.comments||[]).length+" commentaires</span><br><button class='btn btn-red' onclick=\"window.open('"+l.lien+"','_blank')\">👀 REGARDER / SUIVRE LE DIRECT</button> <button class='btn' onclick=\"likeLive("+idx+")\">❤️ Aimer le LIVE</button> <button class='btn' onclick=\"commenterLive("+idx+")\">💬 Commenter le LIVE</button> <button class='btn' onclick=\"partagerLive("+idx+")\">↗️ Partager le LIVE</button> <button class='btn btn-dark' onclick=\"signalerLive("+idx+")\">🚨 Signaler</button>"+coms+"</div>";
+  }).join('');
+}
+function voirPhoto(e){var f=e.target.files[0];if(!f)return;if(f.size>3000000)return alert("Photo / Vidéo trop lourde.");var r=new FileReader();r.onload=function(ev){photoChoisie=ev.target.result;if(f.type.indexOf('video')>-1){typeMedia='video';var v=document.getElementById('previewVideo');v.src=photoChoisie;v.style.display='block';document.getElementById('preview').style.display='none'}else{typeMedia='image';var p=document.getElementById('preview');p.src=photoChoisie;p.style.display='block';document.getElementById('previewVideo').style.display='none'}};r.readAsDataURL(f)}
+function afficher(){
+  var feed=document.getElementById('feed');feed.innerHTML='';
+  posts.forEach(function(p,i){
+    if(bloques.indexOf(p.nom)>-1) return;
+    var labels={talent:'🔥 TALENT',news:'📰 ACTUALITÉ',foot:'⚽ FOOTBALL',pol:'🏛️ POLITIQUE',humour:'😂 HUMOUR',star:'⭐ STARS',live:'🔴 LIVE',mystere:'🔮 MYSTÈRE',confession:'👻 CONFESSION',duel:'⚔️ DUEL',defi:'🎯 DÉFI',debat:'🧠 DÉBAT',emploi:'💼 EMPLOI',savoir:'📚 SAVOIR',business:'💰 BUSINESS',sante:'🩺 SANTÉ',parents:'👨‍👩‍👧 PARENTS',voix:'🎤 VOIX',marche:'🛍️ MARCHÉ',oracle:'🔮 ORACLE'};
+    var badge=p.isLive||p.cat=='live'?'<span class="badge">● LIVE</span> ':p.cat=='confession'?'<span class="badge-new">👻 ANONYME</span> ':'<span class="badge-new">NOUVEAU</span> ';
+    var media='';if(p.img){if(p.type=='video'){media='<video class="main" src="'+p.img+'" controls playsinline></video>'}else{media='<img src="'+p.img+'" onerror="this.style.display=\'none\'">'}} 
+    var waBtn='';if(p.wa){waBtn='<span style="background:#25D366!important;color:white!important" onclick="contacter(\''+echapper(p.wa)+'\')">💬 WhatsApp</span>'}
+    var liveBtn='';if(p.liveLink){liveBtn='<span style="background:#ff2d55!important;color:white!important" onclick="window.open(\''+p.liveLink+'\',\'_blank\')">🔴 REGARDER LE LIVE</span>'}
+    var deja=mesLikes.indexOf(p.id)>-1;var lc=deja?'liked':'';var lt=deja?'❤️ Aimé • ':'🤍 J\'aime • ';
+    var partageClass=p.autorisePartage===false?'blocked':'';
+    var partageText=p.autorisePartage===false?'🔒 Partage bloqué':'↗️ Partager';
+    var teleClass=p.autoriseTelechargement===false?'blocked':'';
+    var teleText=p.autoriseTelechargement===false?'🔒 Téléchargement bloqué':'⬇️ Télécharger';
+    var coms=(p.comments||[]).map(function(c,ci){return '<div><span><b>Fan :</b> '+echapper(c)+'</span><button onclick="signalerCommentaire('+i+','+ci+')">🚨</button></div>'}).join('');
+    feed.innerHTML+='<div class="video '+(p.isLive?'live':'')+'" data-cat="'+echapper(p.cat)+'">'+media+'<div class="info">'+badge+'<b>'+echapper(p.nom)+'</b> <span style="color:#888;font-size:12px">'+echapper(p.date||'')+'</span><h3>'+echapper(p.texte)+'</h3><p>'+(labels[p.cat]||echapper(p.cat))+' • '+(p.autorisePartage===false?'🔒 Partage non autorisé':'✅ Partage autorisé')+' • '+(p.autoriseTelechargement===false?'🔒 Téléchargement non autorisé':'✅ Téléchargement autorisé')+'</p></div><div class="actions"><span class="'+lc+'" onclick="like('+i+')">'+lt+'<b>'+(p.likes||0)+'</b></span><span onclick="commenter('+i+')">💬 Commenter</span><span class="'+partageClass+'" onclick="partagerPost('+i+')">'+partageText+'</span><span class="'+teleClass+'" onclick="telechargerPost('+i+')">'+teleText+'</span>'+waBtn+liveBtn+'<span style="background:#333!important;color:#ff8c00!important" onclick="signalerPost('+i+')">🚨 Signaler</span><span onclick="supprimer('+i+')">🗑️ Supprimer</span></div><div class="comments">'+coms+'</div></div>';
+  });
+  var sorted=posts.slice().sort(function(a,b){return (b.likes||0)-(a.likes||0)}).slice(0,3);
+  document.getElementById('topList').innerHTML=sorted.map(function(p,idx){return '<div class="top-item"><span>'+(idx+1)+'. '+echapper(p.nom)+'</span><span>❤️ '+(p.likes||0)+'</span></div>'}).join('');
+  afficherLives();
+}
+function like(i){var id=posts[i].id;var pos=mesLikes.indexOf(id);if(pos>-1){posts[i].likes--;mesLikes.splice(pos,1)}else{posts[i].likes++;mesLikes.push(id);ajouterPoints(1)}sauver();afficher()}
+function commenter(i){var t=prompt("Écris ton commentaire :");if(!t)return;posts[i].comments=posts[i].comments||[];posts[i].comments.push(t);sauver();afficher();ajouterPoints(2);alert("Commentaire publié ! ✅")}
+function partager(){var link="https://nova-shuya-officiel.netlify.app";if(navigator.share){navigator.share({title:"NOVA SHUYA",text:"Viens sur NOVA SHUYA !",url:link})}else{prompt("Copie ce lien :",link)}}
+function contacter(n){var c=String(n).replace(/[^0-9]/g,'');window.open("https://wa.me/"+c+"?text="+encodeURIComponent("Salut, je t'ai vu sur NOVA SHUYA ! 🔥"),"_blank")}
+function supprimer(i){var c=prompt("Code ADMIN Fondateur ?");if(c==="NOVA2026"){if(confirm("Supprimer ce post ?")){posts.splice(i,1);sauver();afficher()}}else alert("Code incorrect.")}
+function filtrer(btn,cat){document.querySelectorAll('.cats button').forEach(function(b){b.classList.remove('active')});btn.classList.add('active');document.querySelectorAll('.video').forEach(function(p){p.style.display=(cat=='tout'||p.getAttribute('data-cat')==cat)?'block':'none'})}
+function rechercher(){var q=document.getElementById('recherche').value.toLowerCase();document.querySelectorAll('.video').forEach(function(p){p.style.display=p.innerText.toLowerCase().indexOf(q)>-1?'block':'none'})}
+function publier(){
+  var nom=document.getElementById('nom').value.trim()||'Nouvel Adhérent 🌍';
+  var wa=document.getElementById('whatsapp').value.trim()||'';
+  var texte=document.getElementById('texte').value.trim()||'Bonjour ! Je viens de rejoindre NOVA SHUYA !';
+  var cat=document.getElementById('categorie').value;
+  var autP=document.getElementById('autorisePartage').checked;
+  var autT=document.getElementById('autoriseTelechargement').checked;
+  if(cat=='confession') nom="👻 Anonyme";
+  posts.unshift({nom:nom,cat:cat,texte:texte,img:photoChoisie,type:typeMedia,likes:0,wa:wa,date:"À l'instant",comments:[],id:"post"+Date.now(),isLive:(cat=='live'),autorisePartage:autP,autoriseTelechargement:autT});
+  sauver();afficher();ajouterPoints(10);alert('Publié ✅ +10 points !\nPartage : '+(autP?'Autorisé ✅':'Bloqué 🔒')+'\nTéléchargement : '+(autT?'Autorisé ✅':'Bloqué 🔒'));
+  document.getElementById('texte').value='';document.getElementById('nom').value='';document.getElementById('whatsapp').value='';document.getElementById('preview').style.display='none';document.getElementById('previewVideo').style.display='none';photoChoisie='';typeMedia='image';document.getElementById('photoFile').value='';
+}
+document.getElementById('defiCount').textContent="🔥 "+defiCount+" participants !";
+majPoints();majDuel();afficherBattle();afficherCapsules();changerVille();afficher();
+</script>
+</body>
+</html>
