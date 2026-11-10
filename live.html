@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NOVA LIVE 🔴</title>
+<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-database-compat.js"></script>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:Arial}
+body{background:#000;color:#fff;overflow:hidden}
+#header{position:fixed;top:0;left:0;right:0;z-index:10;display:flex;justify-content:space-between;padding:12px 16px;background:linear-gradient(to bottom,rgba(0,0,0,.8),transparent)}
+#header b{font-size:20px} #header b span{color:#ff2d55}
+#feed{height:100vh;overflow-y:scroll;scroll-snap-type:y mandatory}
+.live-card{height:100vh;scroll-snap-align:start;position:relative;background:#111}
+.live-card iframe{width:100%;height:100%;border:0}
+.live-info{position:absolute;bottom:90px;left:12px;right:70px;z-index:5}
+.live-info b{font-size:18px} .live-info p{font-size:13px;opacity:.9;margin-top:4px}
+.live-actions{position:absolute;right:10px;bottom:100px;display:flex;flex-direction:column;gap:16px;z-index:5;text-align:center}
+.action{width:52px;height:52px;background:rgba(255,255,255,.2);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:24px;cursor:pointer;backdrop-filter:blur(5px)}
+.action span{display:block;font-size:11px;margin-top:2px}
+#goLive{position:fixed;bottom:18px;left:50%;transform:translateX(-50%);z-index:20;background:#ff2d55;color:#fff;border:0;padding:14px 26px;border-radius:30px;font-weight:900;font-size:16px;box-shadow:0 5px 20px rgba(255,45,85,.6)}
+#empty{text-align:center;padding-top:40vh} #empty h2{font-size:24px} #empty p{opacity:.7;margin-top:10px}
+</style>
+</head>
+<body>
+<div id="header"><b>NOVA <span>LIVE</span></b><div>🔴 EN DIRECT</div></div>
+<div id="feed"><div id="empty"><h2>Aucun live pour le moment 😴</h2><p>Sois le premier à lancer ton live !</p><p style="margin-top:20px">👇 Clique sur GO LIVE en bas</p></div></div>
+<button id="goLive" onclick="goLive()">+ GO LIVE 🔴</button>
+<script>
+const firebaseConfig = {
+  apiKey: "AIzaSyAJMrnzb5-6SvqP-dKEDrGhrHZ_uMn6nZs",
+  authDomain: "novashuya.firebaseapp.com",
+  projectId: "novashuya",
+  storageBucket: "novashuya.firebasestorage.app",
+  messagingSenderId: "597908625291",
+  appId: "1:597908625291:web:2b
