@@ -4,96 +4,132 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>NOVA SHUYA 🔥</title>
-<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-database-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
 <style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:Arial}
-body{background:#0f0f1a;color:#fff;padding-bottom:80px}
-#header{position:sticky;top:0;z-index:20;background:#0f0f1a;padding:14px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #222}
-#header b{font-size:22px} #header b span{color:#ff2d55}
-#header div{font-size:13px;background:#ff2d55;padding:6px 12px;border-radius:20px;font-weight:900}
-.tab{display:none;padding:12px} .tab.active{display:block}
-.post{background:#1a1a2e;border-radius:16px;margin-bottom:16px;overflow:hidden;border:1px solid #2a2a3e}
-.post-head{display:flex;gap:10px;padding:12px;align-items:center}
-.avatar{width:44px;height:44px;border-radius:50%;background:linear-gradient(45deg,#ff2d55,#ff9a00);display:flex;align-items:center;justify-content:center;font-size:20px;font-weight:900}
-.post img,.post video{width:100%;max-height:420px;object-fit:cover;display:block;background:#000}
-.post-text{padding:12px;font-size:15px;line-height:1.4}
-.post-actions{display:flex;justify-content:space-around;padding:10px;border-top:1px solid #2a2a3e}
-.post-actions button{background:none;border:0;color:#fff;font-size:15px;cursor:pointer}
-.btn{width:100%;background:#ff2d55;color:#fff;border:0;padding:14px;border-radius:12px;font-weight:900;font-size:15px;margin:10px 0;cursor:pointer}
-.btn2{background:#2a2a3e}
-input,textarea,select{width:100%;background:#1a1a2e;color:#fff;border:1px solid #333;padding:13px;border-radius:12px;margin:6px 0;outline:none}
-.cercle{background:#1a1a2e;border-radius:16px;padding:14px;margin-bottom:12px;display:flex;gap:12px;align-items:center}
-.cercle img{width:70px;height:70px;border-radius:12px;object-fit:cover}
-.profile-card{background:linear-gradient(135deg,#ff2d55,#7b2fff);border-radius:20px;padding:20px;text-align:center}
-.bar{height:12px;background:rgba(255,255,255,.3);border-radius:10px;overflow:hidden;margin:10px 0}
-.bar i{display:block;height:100%;background:#fff;border-radius:10px}
-.leader{display:flex;justify-content:space-between;background:#1a1a2e;padding:12px 14px;border-radius:12px;margin:6px 0;align-items:center}
-.badge{display:inline-block;background:#ffd700;color:#000;padding:4px 10px;border-radius:20px;font-size:12px;font-weight:900;margin:3px}
-#bottom{position:fixed;bottom:0;left:0;right:0;background:#0f0f1a;display:flex;justify-content:space-around;padding:10px 0 14px;border-top:1px solid #222;z-index:30}
-#bottom button{background:none;border:0;color:#888;font-size:12px;cursor:pointer}
-#bottom button.active{color:#ff2d55;font-weight:900}
-#bottom button span{display:block;font-size:22px}
-.live-box{background:#1a1a2e;border-radius:16px;padding:14px;margin-bottom:12px;border:1px solid #ff2d55}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#0f0f1a;color:#fff;font-family:Arial,sans-serif;padding-bottom:80px}
+#header{position:sticky;top:0;z-index:10;background:#1a1a2e;padding:12px;text-align:center;border-bottom:2px solid #ff2d55}
+#header b{font-size:22px}#header div{font-size:13px;color:#aaa}
+.tab{display:none;padding:12px}
+.tab.active{display:block}
+.post{background:#1a1a2e;border-radius:12px;margin-bottom:14px;overflow:hidden;border:1px solid #333}
+.post-head{display:flex;align-items:center;gap:10px;padding:10px}
+.avatar{width:44px;height:44px;border-radius:50%;background:linear-gradient(45deg,#ff2d55,#ff9f43);display:flex;align-items:center;justify-content:center;font-size:22px}
+.post img,.post video{width:100%;display:block;max-height:400px;object-fit:cover}
+.post-text{padding:12px}
+.post-actions{display:flex;justify-content:space-around;padding:10px;border-top:1px solid #333}
+.post-actions button{background:none;border:none;color:#fff;font-size:15px;cursor:pointer}
+.btn{width:100%;padding:13px;border:none;border-radius:10px;background:#ff2d55;color:#fff;font-weight:bold;font-size:16px;cursor:pointer}
+.btn2{background:#2e2e4a}
+input,textarea{width:100%;padding:12px;border-radius:10px;border:1px solid #333;background:#1a1a2e;color:#fff;margin-bottom:10px}
+.cercle{background:#1a1a2e;padding:14px;border-radius:12px;margin-bottom:12px;display:flex;justify-content:space-between;align-items:center;border:1px solid #333}
+.cercle button{background:#ff2d55;border:none;color:#fff;padding:8px 14px;border-radius:20px;font-weight:bold}
+.profile{background:#1a1a2e;padding:18px;border-radius:14px;text-align:center}
+.bar{background:#333;height:12px;border-radius:10px;overflow:hidden;margin:10px 0}
+.bar div{height:100%;background:linear-gradient(90deg,#ff2d55,#ff9f43)}
+.top-item{display:flex;justify-content:space-between;padding:10px;background:#22223a;border-radius:10px;margin-bottom:8px}
+#nav{position:fixed;bottom:0;left:0;right:0;background:#1a1a2e;display:flex;border-top:1px solid #333;z-index:20}
+#nav button{flex:1;padding:12px 2px;background:none;border:none;color:#aaa;font-size:13px}
+#nav button.active{color:#ff2d55;font-weight:bold}
 </style>
 </head>
 <body>
-<div id="header"><b>NOVA <span>SHUYA</span></b><div id="myPointsTop">⭐ 0 pts</div></div>
+
+<div id="header"><b>NOVA SHUYA 🔥</b><div>Le réseau des talents</div></div>
+
+<!-- ACCUEIL -->
 <div id="tab-accueil" class="tab active">
-<textarea id="postText" placeholder="Quoi de neuf, NovaStar ? 🔥"></textarea>
-<input id="postMedia" placeholder="Lien photo / video - optionnel">
-<button class="btn" onclick="publish()">+ PUBLIER (+10 PTS) 🚀</button>
-<div id="feed"></div>
+<textarea id="txt" rows="3" placeholder="Quoi de neuf, Talent ? 🎤⚽🎮"></textarea>
+<input type="file" id="media" accept="image/*,video/*">
+<button class="btn" onclick="publier()">Publier 🔥 +10 pts</button>
+<div id="feed" style="margin-top:14px"></div>
 </div>
+
+<!-- CERCLES -->
 <div id="tab-cercles" class="tab">
-<h2>👥 Cercles NOVA</h2><p style="opacity:.7;margin:8px 0">Rejoins ta communaute !</p>
-<div id="cerclesList"></div>
+<h3>👥 Mes Cercles</h3><br>
+<div id="listeCercles"></div>
 </div>
+
+<!-- LIVE -->
 <div id="tab-live" class="tab">
-<h2>🔴 NOVA LIVE</h2><p style="opacity:.7;margin:8px 0">Les lives en direct.</p>
-<button class="btn" onclick="location.href='live.html'">+ GO LIVE 🔴 (+20 PTS)</button>
-<div id="livesList"></div>
+<h3>🔴 NOVA LIVE</h3><br>
+<button class="btn" onclick="window.location.href='live.html'">🎥 GO LIVE</button><br><br>
+<div class="post"><div class="post-head"><div class="avatar">🎤</div><div><b>Shuya Officiel</b><br><small>EN DIRECT • 1.2k viewers</small></div></div><div class="post-text">🔥 Grand Show des Talents en cours ! Viens regarder !</div></div>
 </div>
+
+<!-- TALENT -->
 <div id="tab-talent" class="tab">
-<div class="profile-card">
-<div style="font-size:50px">⭐</div>
-<h2 id="profilName">NovaStar</h2>
-<p id="profilLevel">Niveau 1 • Novice</p>
-<div class="bar"><i id="profilBar" style="width:0%"></i></div>
-<p><b id="profilPoints">0</b> points • <span id="profilNext">100 pts pour niveau 2</span></p>
-<div style="margin-top:10px"><span class="badge">🔥 FAN</span><span class="badge" id="badgeLevel">LVL 1</span></div>
+<div class="profile">
+<div style="font-size:50px">👑</div>
+<h2 id="monNom">Talent Nova</h2>
+<p id="monNiveau">Niveau 1 • Débutant</p>
+<h1 id="mesPoints" style="color:#ff9f43">0 pts</h1>
+<div class="bar"><div id="maBarre" style="width:0%"></div></div>
+<p id="prochainNiveau">Plus que 100 pts pour le niveau 2</p><br>
+<button class="btn" onclick="dailyReward()">🎁 Daily Reward +50 pts</button>
+</div><br>
+<h3>🏆 Top 5 Talents</h3><br><div id="topTalents"></div><br>
+<h3>📊 Mes Stats Réelles</h3><br>
+<div class="top-item"><span>📝 Publications</span><b id="statPosts">0</b></div>
+<div class="top-item"><span>❤️ Likes reçus</span><b id="statLikes">0</b></div>
+<div class="top-item"><span>💬 Commentaires</span><b id="statComs">0</b></div>
 </div>
-<button class="btn btn2" onclick="dailyReward()">🎁 DAILY REWARD (+50 PTS)</button>
-<h3 style="margin:12px 0">🏆 Top Talents NOVA</h3>
-<div id="leaderboard"></div>
-<h3 style="margin:12px 0">📊 Mes Stats REELLES</h3>
-<div id="myStats" style="background:#1a1a2e;padding:14px;border-radius:14px;line-height:1.8"></div>
+
+<div id="nav">
+<button id="btn-accueil" class="active" onclick="showTab('accueil')">🏠<br>Accueil</button>
+<button id="btn-cercles" onclick="showTab('cercles')">👥<br>Cercles</button>
+<button id="btn-live" onclick="showTab('live')">🔴<br>LIVE</button>
+<button id="btn-talent" onclick="showTab('talent')">🏆<br>Talent</button>
 </div>
-<div id="bottom">
-<button class="active" onclick="showTab('accueil',this)"><span>🏠</span>Accueil</button>
-<button onclick="showTab('cercles',this)"><span>👥</span>Cercles</button>
-<button onclick="showTab('live',this)"><span>🔴</span>LIVE</button>
-<button onclick="showTab('talent',this)"><span>🏆</span>Talent</button>
-</div>
+
 <script>
-const firebaseConfig={apiKey:"AIzaSyAJMrnzb5-6SvqP-dKEDrGhrHZ_uMn6nZs",authDomain:"novashuya.firebaseapp.com",projectId:"novashuya",storageBucket:"novashuya.firebasestorage.app",messagingSenderId:"597908625291",appId:"1:597908625291:web:2b8f00eb20e6eddffe018e",databaseURL:"https://novashuya-default-rtdb.firebaseio.com"};
-firebase.initializeApp(firebaseConfig);
-const db=firebase.database();
-let myPseudo=localStorage.getItem('nova_pseudo')||prompt("Ton pseudo NOVA ?")||"NovaStar";
-localStorage.setItem('nova_pseudo',myPseudo);
-document.getElementById('profilName').textContent="@"+myPseudo;
-function showTab(name,btn){document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));document.getElementById('tab-'+name).classList.add('active');document.querySelectorAll('#bottom button').forEach(b=>b.classList.remove('active'));btn.classList.add('active');}
-function addPoints(n,raison){db.ref('users/'+myPseudo+'/points').transaction(p=>(p||0)+n);db.ref('users/'+myPseudo).update({pseudo:myPseudo,lastAction:raison,updatedAt:Date.now()});alert("+"+n+" PTS ! "+raison+" 🔥");}
-function publish(){let t=document.getElementById('postText').value.trim();let m=document.getElementById('postMedia').value.trim();if(!t&&!m) return alert("Ecris quelque chose !");db.ref('posts').push({pseudo:myPseudo,text:t,media:m,likes:0,comments:0,createdAt:Date.now()});document.getElementById('postText').value='';document.getElementById('postMedia').value='';addPoints(10,"Publication");}
-function likePost(id){db.ref('posts/'+id+'/likes').transaction(c=>(c||0)+1);addPoints(2,"Like");}
-function commentPost(id){let c=prompt("Ton commentaire ?");if(!c) return;db.ref('posts/'+id+'/comments').transaction(x=>(x||0)+1);addPoints(5,"Commentaire");}
-function dailyReward(){let today=new Date().toDateString();let last=localStorage.getItem('nova_daily');if(last===today) return alert("Deja recupere aujourd'hui ! Reviens demain 🎁");localStorage.setItem('nova_daily',today);addPoints(50,"Daily Reward");}
-const cercles=[{n:"🎵 Musique NOVA",d:"Chante, rap, partage tes sons",img:"https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=200",m:"1.2k membres"},{n:"⚽ Foot NOVA",d:"Foot, buts, debats",img:"https://images.unsplash.com/photo-1579952363873-27f3bade9f55?w=200",m:"890 membres"},{n:"💃 Danse NOVA",d:"Choregraphies, challenges",img:"https://images.unsplash.com/photo-1508700115892-45ecd05ae2ad?w=200",m:"2.1k membres"},{n:"🎮 Gaming NOVA",d:"Free Fire, jeux, tournois",img:"https://images.unsplash.com/photo-1542751371-adc38448a05e?w=200",m:"3k membres"}];
-document.getElementById('cerclesList').innerHTML=cercles.map(c=>`<div class="cercle"><img src="${c.img}"><div style="flex:1"><b>${c.n}</b><p style="opacity:.7;font-size:13px">${c.d}<br>${c.m}</p></div><button onclick="joinCercle('${c.n}')" style="background:#ff2d55;color:#fff;border:0;padding:8px 14px;border-radius:20px;font-weight:900">Rejoindre</button></div>`).join('');
-function joinCercle(n){addPoints(15,"Rejoint "+n);alert("Bienvenue dans "+n+" ! 👥");}
-db.ref('posts').on('value',s=>{let f=document.getElementById('feed');let d=s.val();if(!d){f.innerHTML="<p style='text-align:center;opacity:.6;margin-top:20px'>Aucune publication. Sois le premier ! 🚀</p>";return;}f.innerHTML='';Object.entries(d).reverse().forEach(([id,p])=>{let media='';if(p.media){if(p.media.includes('.mp4')||p.media.includes('video')) media=`<video src="${p.media}" controls></video>`;else media=`<img src="${p.media}">`;}let div=document.createElement('div');div.className='post';div.innerHTML=`<div class="post-head"><div class="avatar">${p.pseudo[0].toUpperCase()}</div><div><b>@${p.pseudo}</b><div style="font-size:12px;opacity:.6">Il y a ${Math.max(1,Math.floor((Date.now()-p.createdAt)/60000))} min</div></div></div>${media}<div class="post-text">${p.text||''}</div><div class="post-actions"><button onclick="likePost('${id}')">❤️ ${p.likes||0} J'aime</button><button onclick="commentPost('${id}')">💬 ${p.comments||0} Commenter</button><button onclick="navigator.clipboard.writeText(location.href);alert('Lien copie !')">➡️ Partager</button></div>`;f.appendChild(div);});});
-db.ref('lives').on('value',s=>{let el=document.getElementById('livesList');let d=s.val();if(!d){el.innerHTML="<p style='opacity:.6'>Aucun live pour le moment 😴</p>";return;}el.innerHTML='';Object.values(d).reverse().forEach(l=>{el.innerHTML+=`<div class="live-box"><b>🔴 @${l.pseudo} EN LIVE</b><p>${l.titre}</p><p>👀 ${l.viewers||1} • ❤️ ${l.likes||0}</p></div>`;});});
-db.ref('users').on('value',s=>{let d=s.val()||{};let me=d[myPseudo]||{points:0};let pts=me.points||0;document.getElementById('myPointsTop').textContent="⭐ "+pts+" pts";document.getElementById('profilPoints').textContent=pts;let lvl=Math.floor(pts/100)+1;let prog=pts%100;document.getElementById('profilLevel').textContent="Niveau "+lvl+" • "+(lvl<3?"Novice":lvl<6?"Talent":lvl<10?"Star":"LEGENDE NOVA 👑");document.getElementById('profilBar').style.width=prog+"%";document.getElementById('profilNext').textContent=(100-prog)+" pts pour niveau "+(lvl+1);document.getElementById('badgeLevel').textContent="LVL "+lvl;let arr=Object.values(d).sort((a,b)=>(b.points||0)-(a.points||0)).slice(0,5);document.getElementById('leaderboard').innerHTML=arr.map((u,i)=>`<div class="leader"><span>${i===0?"🥇":i===1?"🥈":i===2?"🥉":"#"+(i+1)} @${u.pseudo}</span><b>${u.points||0} pts</b></div>`).join('')||"<p>Aucun talent encore</p>";document.getElementById('myStats').innerHTML=`⭐ Points : <b>${pts}</b><br>🏆 Niveau : <b>${lvl}</b><br>👤 Pseudo : <b>@${myPseudo}</b><br>🔥 Derniere action : ${me.lastAction||"Aucune"}`;});
-</script>
-</body>
-</html>
+// --- FIREBASE : GARDE TA CONFIG ACTUELLE ---
+var firebaseConfig = {
+  apiKey: "TA_CLE_ICI",
+  authDomain: "TON_PROJET.firebaseapp.com",
+  projectId: "TON_PROJET",
+  storageBucket: "TON_PROJET.appspot.com",
+  messagingSenderId: "123456",
+  appId: "TON_APP_ID"
+};
+try{ if(!firebase.apps.length) firebase.initializeApp(firebaseConfig); }catch(e){}
+var db = null; try{ db = firebase.firestore(); }catch(e){}
+
+// --- ETAT LOCAL ---
+var points = parseInt(localStorage.getItem('nova_points')||'0');
+var mesPosts = JSON.parse(localStorage.getItem('nova_posts')||'[]');
+var cercles = [
+  {n:'🎵 Musique NOVA', m:'12.4k membres', j:false},
+  {n:'⚽ Foot NOVA', m:'8.9k membres', j:false},
+  {n:'💃 Danse NOVA', m:'6.2k membres', j:false},
+  {n:'🎮 Gaming NOVA', m:'15.1k membres', j:false}
+];
+
+function showTab(t){
+  document.querySelectorAll('.tab').forEach(e=>e.classList.remove('active'));
+  document.querySelectorAll('#nav button').forEach(e=>e.classList.remove('active'));
+  document.getElementById('tab-'+t).classList.add('active');
+  document.getElementById('btn-'+t).classList.add('active');
+  if(t==='talent') updateProfil();
+  if(t==='cercles') renderCercles();
+}
+function addPoints(n){
+  points+=n; localStorage.setItem('nova_points', points); updateProfil();
+  alert('+'+n+' pts ! 🔥 Total : '+points+' pts');
+}
+function updateProfil(){
+  document.getElementById('mesPoints').innerText = points+' pts';
+  var niv = Math.floor(points/100)+1;
+  document.getElementById('monNiveau').innerText = 'Niveau '+niv+' • '+(niv==1?'Débutant':niv==2?'Confirmé':niv==3?'Star':'Légende');
+  var prog = points%100;
+  document.getElementById('maBarre').style.width = prog+'%';
+  document.getElementById('prochainNiveau').innerText = 'Plus que '+(100-prog)+' pts pour le niveau '+(niv+1);
+  document.getElementById('statPosts').innerText = mesPosts.length;
+  var likes=0, coms=0; mesPosts.forEach(p=>{likes+=p.likes||0; coms+=(p.coms||[]).length;});
+  document.getElementById('statLikes').innerText = likes;
+  document.getElementById('statComs').innerText = coms;
+  document.getElementById('topTalents').innerHTML =
+    '<div class="top-item"><span>👑 1. Toi</span><b>'+points+' pts</b></div>'+
+    '<div class="top-item"><span>🥈 2. Awa Star</span><b>850 pts
