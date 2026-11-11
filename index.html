@@ -1,135 +1,69 @@
 <!DOCTYPE html>
-<html lang="fr">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>NOVA SHUYA 🔥</title>
-<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
-<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
-<style>
-*{margin:0;padding:0;box-sizing:border-box}
-body{background:#0f0f1a;color:#fff;font-family:Arial,sans-serif;padding-bottom:80px}
-#header{position:sticky;top:0;z-index:10;background:#1a1a2e;padding:12px;text-align:center;border-bottom:2px solid #ff2d55}
-#header b{font-size:22px}#header div{font-size:13px;color:#aaa}
-.tab{display:none;padding:12px}
-.tab.active{display:block}
-.post{background:#1a1a2e;border-radius:12px;margin-bottom:14px;overflow:hidden;border:1px solid #333}
-.post-head{display:flex;align-items:center;gap:10px;padding:10px}
-.avatar{width:44px;height:44px;border-radius:50%;background:linear-gradient(45deg,#ff2d55,#ff9f43);display:flex;align-items:center;justify-content:center;font-size:22px}
-.post img,.post video{width:100%;display:block;max-height:400px;object-fit:cover}
-.post-text{padding:12px}
-.post-actions{display:flex;justify-content:space-around;padding:10px;border-top:1px solid #333}
-.post-actions button{background:none;border:none;color:#fff;font-size:15px;cursor:pointer}
-.btn{width:100%;padding:13px;border:none;border-radius:10px;background:#ff2d55;color:#fff;font-weight:bold;font-size:16px;cursor:pointer}
-.btn2{background:#2e2e4a}
-input,textarea{width:100%;padding:12px;border-radius:10px;border:1px solid #333;background:#1a1a2e;color:#fff;margin-bottom:10px}
-.cercle{background:#1a1a2e;padding:14px;border-radius:12px;margin-bottom:12px;display:flex;justify-content:space-between;align-items:center;border:1px solid #333}
-.cercle button{background:#ff2d55;border:none;color:#fff;padding:8px 14px;border-radius:20px;font-weight:bold}
-.profile{background:#1a1a2e;padding:18px;border-radius:14px;text-align:center}
-.bar{background:#333;height:12px;border-radius:10px;overflow:hidden;margin:10px 0}
-.bar div{height:100%;background:linear-gradient(90deg,#ff2d55,#ff9f43)}
-.top-item{display:flex;justify-content:space-between;padding:10px;background:#22223a;border-radius:10px;margin-bottom:8px}
-#nav{position:fixed;bottom:0;left:0;right:0;background:#1a1a2e;display:flex;border-top:1px solid #333;z-index:20}
-#nav button{flex:1;padding:12px 2px;background:none;border:none;color:#aaa;font-size:13px}
-#nav button.active{color:#ff2d55;font-weight:bold}
-</style>
-</head>
+<html lang="fr"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><title>NOVA SHUYA 🌍 - 20 INNOVATIONS</title>
+<style>*{margin:0;padding:0;box-sizing:border-box;font-family:Arial,sans-serif}body{background:#000;color:#fff;padding-bottom:85px}header{background:#000;padding:14px;text-align:center;position:sticky;top:0;z-index:20;border-bottom:2px solid #222}header h1{font-size:26px;letter-spacing:3px}header h1 span{color:#ff2d55}.bar{background:#222;height:12px;border-radius:10px;margin:8px 20px;overflow:hidden}.bar div{height:100%;background:linear-gradient(90deg,gold,#ff2d55);transition:width .5s}.tab{display:none;padding:12px}.tab.active{display:block}.box{background:#111;margin:12px 0;border-radius:18px;padding:16px;border:1px solid #222;text-align:center}.box input,.box select,.box textarea{width:100%;padding:12px;border-radius:12px;border:1px solid #333;background:#000;color:#fff;margin:6px 0}.btn{display:inline-block;background:#fff;color:#000;padding:10px 14px;border-radius:20px;font-size:13px;margin-top:8px;border:none;margin-right:4px;cursor:pointer;font-weight:bold}.btn-red{background:#ff2d55;color:#fff}.btn-gold{background:gold;color:#000}.btn-green{background:#00c853;color:#fff}.btn-blue{background:#00c6ff;color:#fff}.btn-orange{background:#ff8c00;color:#fff}.btn-purple{background:#a100ff;color:#fff}.card-mini{background:#000;border:1px solid #333;border-radius:12px;padding:12px;margin:8px 0;text-align:left}.mystere-img{width:130px;height:130px;border-radius:50%;margin:12px auto;border:3px solid gold;object-fit:cover;filter:blur(18px) brightness(.2)}.mystere-img.revealed{filter:none}#roue{font-size:60px;transition:transform 2.5s cubic-bezier(.1,.9,.2,1);display:inline-block}.post{background:#111;margin:12px 0;border-radius:15px;overflow:hidden;border:1px solid #222}.post img,.post video{width:100%;height:220px;object-fit:cover;background:#000}.post .info{padding:12px;text-align:left}.actions{padding:0 12px 12px;display:flex;flex-wrap:wrap;gap:6px}.actions span{cursor:pointer;padding:8px 11px;border-radius:18px;background:#222;font-size:12px;font-weight:bold}.actions span.liked{background:#fff;color:#000}.comments{padding:0 12px 12px;font-size:13px;text-align:left}.comments div{background:#222;padding:7px 10px;border-radius:10px;margin-top:6px}.bar-wrap{display:flex;height:14px;border-radius:10px;overflow:hidden;background:#333;margin:8px 0}.oracle-opt{width:100%;padding:12px;border-radius:12px;border:1px solid #444;background:#000;color:#fff;margin:5px 0;text-align:left;cursor:pointer}.oracle-opt.selected{border-color:gold;background:#332200}.top-item{display:flex;justify-content:space-between;padding:9px 0;border-bottom:1px solid #222;font-size:14px}#nav{position:fixed;bottom:0;left:0;right:0;background:#111;display:flex;border-top:1px solid #333;z-index:30}#nav button{flex:1;padding:12px 2px;background:none;border:none;color:#888;font-size:12px}#nav button.active{color:#ff2d55;font-weight:bold}.badge{background:#ff2d55;color:#fff;padding:3px 8px;border-radius:10px;font-size:11px}.badge-new{background:#222;color:#fff;padding:3px 8px;border-radius:10px;font-size:11px;border:1px solid #444}.grid20{display:flex;flex-wrap:wrap;gap:6px;justify-content:center}.grid20 button{padding:8px 11px;border-radius:20px;border:1px solid #333;background:#111;color:#fff;font-size:12px;font-weight:bold}</style></head>
 <body>
-
-<div id="header"><b>NOVA SHUYA 🔥</b><div>Le réseau des talents</div></div>
+<header><h1>NOVA <span>SHUYA</span> 🌍</h1><p>🇨🇮 🇸🇳 🇲🇱 🇳🇬 🇫🇷 🇨🇲 🇬🇳 INTERNATIONAL</p><p style="font-size:13px;margin-top:8px">⭐ <b id="monNiveau">NOUVEAU 🌱</b> • <b id="mesPoints">0 points NOVA</b> • 🚨 <span id="mesSig">0</span> signalements</p><div class="bar"><div id="pointsBar" style="width:0%"></div></div><p style="font-size:11px;color:#aaa">20 Innovations • Jeunes, Parents, Intellectuels, Entrepreneurs</p><div style="display:flex;gap:8px;margin-top:8px"><input id="recherche" placeholder="🔍 Rechercher..." oninput="rechercher()" style="flex:1;padding:12px;border-radius:25px;border:1px solid #333;background:#111;color:#fff"><button onclick="alert('🔔 3 notifs : Awa a liké, Koffi a commenté, Nouveau LIVE !')" style="background:#ff2d55;border:none;color:#fff;padding:10px 14px;border-radius:50%">🔔</button></div></header>
 
 <!-- ACCUEIL -->
 <div id="tab-accueil" class="tab active">
-<textarea id="txt" rows="3" placeholder="Quoi de neuf, Talent ? 🎤⚽🎮"></textarea>
-<input type="file" id="media" accept="image/*,video/*">
-<button class="btn" onclick="publier()">Publier 🔥 +10 pts</button>
-<div id="feed" style="margin-top:14px"></div>
+<div class="grid20"><button onclick="showTab('explorer')">🔮 Mystère</button><button onclick="showTab('explorer')">🧠 Débat</button><button onclick="showTab('explorer')">💼 Emploi</button><button onclick="showTab('explorer')">📚 Savoir</button><button onclick="showTab('live')">🔴 LIVE</button><button onclick="showTab('talent')">🏆 Profil</button></div>
+
+<div class="box" style="border:2px solid gold;background:linear-gradient(135deg,#1a0033,#000)"><h2 style="color:gold">1. 🔮 NOVA MYSTÈRE</h2><img id="mystereImg" class="mystere-img" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=400"><p style="font-size:13px;color:gold">💡 Indice : Elle vient de Bamako, elle chante comme une reine</p><input id="devineNom" placeholder="C'est qui ?"><button class="btn btn-gold" onclick="deviner()" style="width:100%">🔮 JE DEVINE ! +50 pts</button><p id="devineResult"></p></div>
+
+<div class="box" style="border:2px solid #a100ff"><h2>2. 🔮 NOVA ORACLE</h2><p style="font-size:13px;color:#aaa">Si tu as raison, +100 points !</p><button class="oracle-opt" onclick="choisirOracle(this,'Mariam')">👑 Mariam va gagner le Duel</button><button class="oracle-opt" onclick="choisirOracle(this,'Aicha')">⭐ Aïcha va gagner</button><button class="btn" style="width:100%;background:#a100ff;color:#fff" onclick="validerOracle()">🔮 VALIDER MA PRÉDICTION</button><p id="oracleResult" style="color:gold"></p></div>
+
+<div class="box" style="border:2px solid #ff2d55"><h2>3. ⚔️ NOVA DUEL</h2><div style="display:flex;gap:10px"><div style="flex:1"><b>MARIAM 🇲🇱</b><br><span id="votesA" style="color:#ff2d55">128 votes</span></div><div>VS</div><div style="flex:1"><b>AÏCHA 🇸🇳</b><br><span id="votesB" style="color:gold">132 votes</span></div></div><div class="bar-wrap"><div id="barA" style="width:49%;background:#ff2d55"></div><div id="barB" style="width:51%;background:gold"></div></div><button class="btn btn-red" onclick="voterDuel('A')">🔥 VOTER MARIAM +5</button><button class="btn btn-gold" onclick="voterDuel('B')">⭐ VOTER AÏCHA +5</button></div>
+
+<div class="box" style="border:2px solid #ff2d55"><h2>4. 👑 BATTLE ROYALE</h2><div id="battleList" style="text-align:left"></div></div>
+<div class="box" style="border:2px dashed gold"><h2>5. 🎡 ROUE NOVA</h2><div id="roue">🎡</div><p id="roueResult" style="color:gold;font-weight:bold">Tourne pour gagner !</p><button class="btn btn-gold" style="width:100%" onclick="tournerRoue()">🎡 TOURNER LA ROUE ! +20</button></div>
+<div class="box" style="border:2px solid #00c6ff"><h2>6. 🎤 NOVA VOIX - Sans visage</h2><div class="card-mini"><b>🎤 Aïcha - Voix cachée</b><br><audio controls style="width:100%"><source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3"></audio><button class="btn" onclick="voterVoix()">❤️ Voter pour cette voix +5</button></div><textarea id="voixText" placeholder="Décris ta voix..."></textarea><button class="btn btn-blue" style="width:100%" onclick="publierVoix()">🎤 PUBLIER MA VOIX +10</button></div>
+<div class="box" style="border:2px solid #00c853"><h2>7. 🕰️ CAPSULE TEMPORELLE</h2><textarea id="capsuleText" placeholder="Dans 1 mois, je serai star !"></textarea><select id="capsuleDelai"><option value="7">Ouvrir dans 7 jours</option><option value="30">Ouvrir dans 30 jours</option></select><button class="btn btn-green" style="width:100%" onclick="creerCapsule()">🕰️ SCELLER MA CAPSULE</button><div id="capsuleList" style="text-align:left"></div></div>
+<div class="box" style="border:2px solid #00c6ff"><h2>8. 📍 NOVA RADAR</h2><select id="villeRadar" onchange="changerVille()"><option value="Abidjan">📍 Abidjan 🇨🇮</option><option value="Dakar">📍 Dakar 🇸🇳</option><option value="Bamako">📍 Bamako 🇲🇱</option><option value="Lagos">📍 Lagos 🇳🇬</option><option value="Paris">📍 Paris 🇫🇷</option></select><div id="radarResult" style="text-align:left;margin-top:10px"></div></div>
+<div class="box" style="border:2px dashed #ff2d55"><h2>9. 🎯 DÉFI 24H</h2><p><b>Défi :</b> Fais rire en 10 secondes ! 😂</p><p>🔥 47 participants !</p><textarea id="defiText" placeholder="Décris ta vidéo..."></textarea><button class="btn btn-red" style="width:100%" onclick="participerDefi()">🎯 JE PARTICIPE ! +10</button></div>
+<div class="box"><h2>10. 👻 CONFESSION ANONYME</h2><textarea id="confessionText" placeholder="Écris ta confession anonyme..."></textarea><button class="btn" style="width:100%" onclick="publierConfession()">👻 PUBLIER ANONYMEMENT +5</button></div>
+<div class="box" style="border:2px solid #00c853"><h2>11. 🛍️ NOVA MARCHÉ</h2><div class="card-mini"><b>💇‍♀️ Aïcha - Coiffure à domicile - Abidjan</b><br>💰 10.000 FCFA • 📍 Cocody<br><button class="btn btn-green" onclick="window.open('https://wa.me/2250545061716','_blank')">💬 Commander</button></div><input id="marcheTitre" placeholder="Ton produit - Ex: Je coiffe à domicile"><input id="marchePrix" placeholder="Ton prix - Ex: 10.000 FCFA"><button class="btn btn-green" style="width:100%" onclick="publierMarche()">🛍️ METTRE EN VENTE</button></div>
+<div class="box" style="border:2px solid gold"><h2>12. ⭐ POINTS NOVA + NIVEAUX</h2><p style="font-size:13px">🌱 Nouveau → 🔥 Talent → ⭐ Star → 👑 Légende → 👑👑 ROI DE NOVA</p><p>Like +1 • Comment +2 • Vote +5 • Publier +10 • Prédiction juste +100</p><button class="btn btn-gold" style="width:100%" onclick="dailyReward()">🎁 DAILY REWARD +50</button></div>
 </div>
 
-<!-- CERCLES -->
-<div id="tab-cercles" class="tab">
-<h3>👥 Mes Cercles</h3><br>
-<div id="listeCercles"></div>
+<!-- EXPLORER : 13 à 20 -->
+<div id="tab-explorer" class="tab">
+<div class="box" style="border:2px solid #ff8c00;background:linear-gradient(135deg,#1a0f00,#000)"><h2>13. 🧠 NOVA DÉBAT</h2><p><b>Débat :</b> "L'école en Afrique doit-elle changer ?"</p><div style="display:flex;gap:8px"><button class="btn" style="flex:1;background:#00c853;color:#fff" onclick="voterDebat('POUR')">👍 POUR</button><button class="btn" style="flex:1;background:#ff2d55;color:#fff" onclick="voterDebat('CONTRE')">👎 CONTRE</button></div><div class="bar-wrap"><div id="barPour" style="width:62%;background:#00c853"></div><div id="barContre" style="width:38%;background:#ff2d55"></div></div><p id="debatResult" style="font-size:13px">62% POUR • 38% CONTRE • 214 votes</p><textarea id="debatArg" placeholder="Ton argument intelligent..."></textarea><button class="btn" style="width:100%;background:#ff8c00;color:#fff" onclick="publierDebat()">🧠 PUBLIER MON ARGUMENT +10</button></div>
+<div class="box" style="border:2px solid #00c853"><h2>14. 💼 NOVA EMPLOI</h2><div class="card-mini"><b>💼 Nounou - Cocody</b><br>💰 60.000 FCFA / mois • <button class="btn btn-green" onclick="alert('Postule sur WhatsApp !')">📩 POSTULER</button></div><div class="card-mini"><b>💼 Chauffeur - Dakar</b><br>💰 80.000 FCFA / mois • <button class="btn btn-green" onclick="alert('Postule !')">📩 POSTULER</button></div><input id="emploiTitre" placeholder="Ton offre - Ex: Je cherche une vendeuse"><input id="emploiSalaire" placeholder="Salaire - Ex: 50.000 FCFA"><button class="btn btn-green" style="width:100%" onclick="publierEmploi()">💼 PUBLIER UNE OFFRE</button></div>
+<div class="box" style="border:2px solid #a100ff"><h2>15. 👨‍🏫 NOVA MENTOR</h2><div class="card-mini"><b>👨‍🏫 Mentor Kader - Entrepreneur</b><br>"J'ai créé 3 entreprises, je t'aide."<br><button class="btn" style="background:#a100ff;color:#fff" onclick="demanderMentor('Kader')">🙏 DEMANDER CE MENTOR +5</button></div><div class="card-mini"><b>👩‍🏫 Mentor Aïcha - Prof d'anglais</b><br>"Je t'aide à parler anglais en 3 mois."<br><button class="btn" style="background:#a100ff;color:#fff" onclick="demanderMentor('Aïcha')">🙏 DEMANDER CE MENTOR +5</button></div><select id="mentorDomaine"><option>Je veux un mentor pour : Mon Business</option><option>Je veux un mentor pour : Chanter / Musique</option><option>Je veux un mentor pour : Parler en public</option><option>Je veux un mentor pour : Mes études</option></select><button class="btn" style="width:100%;background:#a100ff;color:#fff" onclick="demanderMentor('général')">👨‍🏫 TROUVER MON MENTOR</button></div>
+<div class="box" style="border:2px solid gold"><h2>16. 📚 NOVA SAVOIR - 1 Minute</h2><div class="card-mini" style="border-color:gold"><b>📚 Leçon : Comment économiser 10.000 FCFA ?</b><br>1. Note tes dépenses. 2. Mets 10% de côté. 3. Ne dépense pas pour impressionner.<br><button class="btn btn-gold" onclick="ajouterPoints(10);alert('Leçon apprise ! +10')">✅ J'AI APPRIS ! +10</button></div></div>
+<div class="box" style="border:2px solid #00c853"><h2>17. 💰 NOVA ENTREPRENEUR</h2><div class="card-mini"><b>💰 Idée de Fatou : Jus naturel à Dakar</b><br>"Jus de bissap bio." • ❤️ 89 votes<br><button class="btn btn-green" onclick="ajouterPoints(5);alert('Tu as soutenu Fatou !')">👍 JE SOUTIENS</button></div><textarea id="businessIdea" placeholder="Ton idée de business..."></textarea><button class="btn btn-green" style="width:100%" onclick="publierBusiness()">💰 PUBLIER MON IDÉE +10</button></div>
+<div class="box" style="border:2px solid #00c6ff"><h2>18. 🩺 NOVA SANTÉ & CONSEIL</h2><div class="card-mini"><b>🩺 Question anonyme :</b> "Mon enfant ne dort pas bien ?"<br><b>👨‍⚕️ Dr Koné :</b> "Évite les écrans 1h avant de dormir."</div><textarea id="santeQ" placeholder="Ta question anonyme - Santé, Droit, École..."></textarea><button class="btn btn-blue" style="width:100%" onclick="publierSante()">🩺 POSER MA QUESTION ANONYMEMENT</button></div>
+<div class="box" style="border:2px solid #ff8c00"><h2>19. 👨‍👩‍👧 NOVA PARENTS</h2><div class="card-mini"><b>👨‍👩‍👧 Comment protéger mon enfant sur internet ?</b><br>💬 34 parents en discutent.<br><button class="btn" style="background:#ff8c00;color:#fff" onclick="rejoindreParents()">👨‍👩‍👧 REJOINDRE +5</button></div><textarea id="parentsText" placeholder="Ta question de parent..."></textarea><button class="btn" style="width:100%;background:#ff8c00;color:#fff" onclick="publierParents()">👨‍👩‍👧 POSER MA QUESTION +10</button></div>
+<div class="box" style="border:2px solid #fff"><h2>20. ✅ NOVA VÉRITÉ - Vrai ou Faux ?</h2><p><b>Info :</b> "Boire de l'eau citronnée guérit toutes les maladies."</p><button class="btn btn-green" onclick="repondreVerite(true)">✅ C'EST VRAI</button><button class="btn btn-red" onclick="repondreVerite(false)">❌ C'EST FAUX</button><p id="veriteResult" style="font-size:13px;margin-top:8px;color:gold"></p></div>
 </div>
 
 <!-- LIVE -->
 <div id="tab-live" class="tab">
-<h3>🔴 NOVA LIVE</h3><br>
-<button class="btn" onclick="window.location.href='live.html'">🎥 GO LIVE</button><br><br>
-<div class="post"><div class="post-head"><div class="avatar">🎤</div><div><b>Shuya Officiel</b><br><small>EN DIRECT • 1.2k viewers</small></div></div><div class="post-text">🔥 Grand Show des Talents en cours ! Viens regarder !</div></div>
+<div class="box" style="border:1px solid #ff2d55;background:linear-gradient(135deg,#2a000a,#000)"><span class="badge">● LIVE</span> <b>EN DIRECT - Epic Party 🎉</b><p id="liveStatus" style="font-size:13px;color:#aaa">Aucun LIVE.</p><input id="liveNom" placeholder="Ton nom LIVE - ex: Aïcha"><input id="liveTitre" placeholder="Titre LIVE - ex: Je chante !"><label style="display:flex;gap:8px;background:#222;padding:12px;border-radius:12px;font-size:13px;text-align:left"><input type="checkbox" id="autorise" checked style="width:20px">✅ J'autorise les autres à aimer, commenter et partager mon LIVE.</label><button class="btn btn-red" onclick="creerLive()" style="width:100%">🔴 CRÉER MON LIVE</button><button class="btn" onclick="regarderLive()" style="width:100%">👀 REGARDER LE LIVE</button><div id="liveList"></div></div>
+<div class="box"><b>🔴 Animateur NOVA - LIVE NOVA</b><p>🎤 En direct • 1.2k viewers</p><button class="btn btn-red" onclick="regarderLive()" style="width:100%">Rejoindre le LIVE</button></div>
 </div>
 
-<!-- TALENT -->
+<!-- TALENT / PROFIL -->
 <div id="tab-talent" class="tab">
-<div class="profile">
-<div style="font-size:50px">👑</div>
-<h2 id="monNom">Talent Nova</h2>
-<p id="monNiveau">Niveau 1 • Débutant</p>
-<h1 id="mesPoints" style="color:#ff9f43">0 pts</h1>
-<div class="bar"><div id="maBarre" style="width:0%"></div></div>
-<p id="prochainNiveau">Plus que 100 pts pour le niveau 2</p><br>
-<button class="btn" onclick="dailyReward()">🎁 Daily Reward +50 pts</button>
-</div><br>
-<h3>🏆 Top 5 Talents</h3><br><div id="topTalents"></div><br>
-<h3>📊 Mes Stats Réelles</h3><br>
-<div class="top-item"><span>📝 Publications</span><b id="statPosts">0</b></div>
-<div class="top-item"><span>❤️ Likes reçus</span><b id="statLikes">0</b></div>
-<div class="top-item"><span>💬 Commentaires</span><b id="statComs">0</b></div>
+<div class="box" style="text-align:center"><div style="font-size:60px">👑</div><h2>Talent Nova</h2><p id="monNiv2">Niveau 1</p><h1 id="mesPts2" style="color:gold">0 pts</h1><div class="bar"><div id="maBarre2" style="width:0%"></div></div><p id="nextNiv">Plus que 100 pts pour le niveau 2</p><div style="margin-top:8px"><span class="badge">🏆 Star</span><span class="badge">🔥 En feu</span></div><button class="btn btn-gold" style="width:100%" onclick="dailyReward()">🎁 DAILY REWARD +50</button></div>
+<div class="box" style="text-align:left"><h3>🏆 TOP TALENTS</h3><div id="topList"></div></div>
+<div class="box" style="text-align:left"><h3>📊 MES STATS RÉELLES</h3><div class="top-item"><span>📝 Publications</span><b id="sPosts">0</b></div><div class="top-item"><span>❤️ Likes</span><b id="sLikes">0</b></div><div class="top-item"><span>💬 Commentaires</span><b id="sComs">0</b></div><div class="top-item"><span>🗳️ Votes</span><b id="sVotes">0</b></div><div class="top-item"><span>🚨 Signalements</span><b id="sSig">0</b></div><button class="btn btn-red" style="width:100%" onclick="signaler()">🚨 Signaler un contenu</button></div>
+<div class="box"><h3>✍️ Publie - Quoi de neuf ?</h3><input id="nom" placeholder="Ton Nom"><input id="whatsapp" placeholder="Ton WhatsApp"><select id="categorie"><option value="talent">🔥 Talent</option><option value="debat">🧠 Débat</option><option value="emploi">💼 Emploi</option><option value="savoir">📚 Savoir</option><option value="business">💰 Business</option><option value="parents">👨‍👩‍👧 Parents</option><option value="confession">👻 Confession</option><option value="live">🔴 LIVE</option></select><textarea id="texte" placeholder="Écris..."></textarea><label style="display:block;background:#000;padding:13px;border-radius:12px;border:1px dashed #555;cursor:pointer" for="photoFile">📸 CHOISIR PHOTO OU VIDÉO</label><input id="photoFile" type="file" accept="image/*,video/*" style="display:none" onchange="voirPhoto(event)"><img id="preview" style="width:100%;border-radius:12px;display:none;margin-top:8px;max-height:300px;object-fit:cover"><video id="previewVideo" controls style="width:100%;border-radius:12px;display:none;margin-top:8px"></video><button class="btn btn-red" style="width:100%;padding:13px" onclick="publier()">🚀 PUBLIER +10</button></div>
+<div id="feed"></div>
 </div>
 
-<div id="nav">
-<button id="btn-accueil" class="active" onclick="showTab('accueil')">🏠<br>Accueil</button>
-<button id="btn-cercles" onclick="showTab('cercles')">👥<br>Cercles</button>
-<button id="btn-live" onclick="showTab('live')">🔴<br>LIVE</button>
-<button id="btn-talent" onclick="showTab('talent')">🏆<br>Talent</button>
-</div>
+<div id="nav"><button id="btn-accueil" class="active" onclick="showTab('accueil')">🏠<br>Accueil</button><button id="btn-explorer" onclick="showTab('explorer')">🧠<br>Explorer</button><button id="btn-live" onclick="showTab('live')">🔴<br>LIVE</button><button id="btn-talent" onclick="showTab('talent')">🏆<br>Talent</button></div>
 
 <script>
-// --- FIREBASE : GARDE TA CONFIG ACTUELLE ---
-var firebaseConfig = {
-  apiKey: "TA_CLE_ICI",
-  authDomain: "TON_PROJET.firebaseapp.com",
-  projectId: "TON_PROJET",
-  storageBucket: "TON_PROJET.appspot.com",
-  messagingSenderId: "123456",
-  appId: "TON_APP_ID"
-};
-try{ if(!firebase.apps.length) firebase.initializeApp(firebaseConfig); }catch(e){}
-var db = null; try{ db = firebase.firestore(); }catch(e){}
-
-// --- ETAT LOCAL ---
-var points = parseInt(localStorage.getItem('nova_points')||'0');
-var mesPosts = JSON.parse(localStorage.getItem('nova_posts')||'[]');
-var cercles = [
-  {n:'🎵 Musique NOVA', m:'12.4k membres', j:false},
-  {n:'⚽ Foot NOVA', m:'8.9k membres', j:false},
-  {n:'💃 Danse NOVA', m:'6.2k membres', j:false},
-  {n:'🎮 Gaming NOVA', m:'15.1k membres', j:false}
-];
-
-function showTab(t){
-  document.querySelectorAll('.tab').forEach(e=>e.classList.remove('active'));
-  document.querySelectorAll('#nav button').forEach(e=>e.classList.remove('active'));
-  document.getElementById('tab-'+t).classList.add('active');
-  document.getElementById('btn-'+t).classList.add('active');
-  if(t==='talent') updateProfil();
-  if(t==='cercles') renderCercles();
-}
-function addPoints(n){
-  points+=n; localStorage.setItem('nova_points', points); updateProfil();
-  alert('+'+n+' pts ! 🔥 Total : '+points+' pts');
-}
-function updateProfil(){
-  document.getElementById('mesPoints').innerText = points+' pts';
-  var niv = Math.floor(points/100)+1;
-  document.getElementById('monNiveau').innerText = 'Niveau '+niv+' • '+(niv==1?'Débutant':niv==2?'Confirmé':niv==3?'Star':'Légende');
-  var prog = points%100;
-  document.getElementById('maBarre').style.width = prog+'%';
-  document.getElementById('prochainNiveau').innerText = 'Plus que '+(100-prog)+' pts pour le niveau '+(niv+1);
-  document.getElementById('statPosts').innerText = mesPosts.length;
-  var likes=0, coms=0; mesPosts.forEach(p=>{likes+=p.likes||0; coms+=(p.coms||[]).length;});
-  document.getElementById('statLikes').innerText = likes;
-  document.getElementById('statComs').innerText = coms;
-  document.getElementById('topTalents').innerHTML =
-    '<div class="top-item"><span>👑 1. Toi</span><b>'+points+' pts</b></div>'+
-    '<div class="top-item"><span>🥈 2. Awa Star</span><b>850 pts
+var points=0; try{points=parseInt(localStorage.getItem('nova_points')||'0');}catch(e){}
+var sig=0; try{sig=parseInt(localStorage.getItem('nova_sig')||'0');}catch(e){}
+var posts=[]; try{posts=JSON.parse(localStorage.getItem('nova_v10')||'[]');}catch(e){}
+var mesLikes=[]; try{mesLikes=JSON.parse(localStorage.getItem('nova_likes_v10')||'[]');}catch(e){}
+var lives=[]; try{lives=JSON.parse(localStorage.getItem('nova_lives_v10')||'[]');}catch(e){}
+var votes={A:128,B:132}; try{var v=JSON.parse(localStorage.getItem('nova_duel')||'null'); if(v) votes=v;}catch(e){}
+var capsules=[]; try{capsules=JSON.parse(localStorage.getItem('nova_capsules')||'[]');}catch(e){}
+var battle=[{nom:"Mariam 🇲🇱",votes:210},{nom:"Aïcha 🇸🇳",votes:195},{nom:"Kévin 🇨🇮",votes:180},{nom:"Moussa 🇸🇳",votes:150},{nom:"Nina 🇨🇲",votes:120},{nom:"Ibrahim 🇲🇱",votes:95},{nom:"Chidinma 🇳🇬",votes:80},{nom:"Léa 🇫🇷",votes:60}];
+var debatVotes={pour:132,contre:82}; var votesTotal=0; try{votesTotal=parseInt(localStorage.getItem('nova_votes')||'0');}catch(e){}
+var photoChoisie="", typeMedia="image", oracleChoix="";
+function showTab(t){document.querySelectorAll('.tab').forEach(e=>e.classList.remove('active'));document.querySelectorAll('#nav button').forEach(e=>e.classList.remove('active'));document.getElementById('tab-'+t).classList.add('active');document.getElementById('btn-'+t).classList.add('active');if(t==='talent')updateProfil();}
+function majPoints(){document.getElementById('mesPoints').innerText=points+" points NOVA";document.getElementById(
