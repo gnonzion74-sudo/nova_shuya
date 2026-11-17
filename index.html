@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -6,827 +5,218 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#050505">
 <title>NOVA SHUYA V22</title>
-
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/intl-tel-input@25.3.1/build/css/intlTelInput.css">
-
 <style>
 *{box-sizing:border-box;font-family:Arial,sans-serif}
-body{margin:0;background:#050505;color:white;padding-bottom:76px}
-header{position:sticky;top:0;z-index:5;text-align:center;background:#090909;border-bottom:1px solid #333;padding:14px}
-.logo{font-size:29px;font-weight:900;letter-spacing:2px}
+body{margin:0;background:#050505;color:white;padding-bottom:78px}
+header{position:sticky;top:0;z-index:5;text-align:center;background:#090909;border-bottom:1px solid #333;padding:12px}
+.logo{font-size:28px;font-weight:900;letter-spacing:2px}
 .logo span{color:#ff3158}
-.subtitle{color:#f5d45b;font-size:10px;letter-spacing:3px;margin-top:4px}
-#accountStatus{font-size:12px;color:#bbb;margin-top:9px}
+.subtitle{color:#f5d45b;font-size:10px;letter-spacing:3px;margin-top:3px}
+#accountStatus{font-size:12px;color:#bbb;margin-top:8px}
 .page{display:none;padding:12px}
 .page.active{display:block}
-.box{background:#111;border:1px solid #303030;border-radius:16px;padding:15px;margin:10px 0}
+.box{background:#111;border:1px solid #303030;border-radius:16px;padding:14px;margin:10px 0}
 h2{font-size:19px;margin:0 0 10px}
-h3{font-size:15px;color:#f5d45b;margin:17px 0 7px}
+h3{font-size:15px;color:#f5d45b;margin:16px 0 7px}
 p{line-height:1.45;margin:7px 0}
 .muted{font-size:13px;color:#aaa}
-input,textarea{display:block;width:100%;background:#050505;color:white;border:1px solid #484848;border-radius:10px;padding:13px;margin:9px 0;font-size:15px}
-textarea{min-height:100px;resize:vertical}
-button{border:0;border-radius:22px;padding:13px 15px;font-weight:700;cursor:pointer;margin:5px 0;font-size:14px}
-button:disabled{opacity:.55;cursor:not-allowed}
+.small{font-size:12px;color:#888}
+input,textarea,select{display:block;width:100%;background:#050505;color:white;border:1px solid #484848;border-radius:10px;padding:13px;margin:8px 0;font-size:15px}
+textarea{min-height:90px;resize:vertical}
+button{border:0;border-radius:22px;padding:12px 14px;font-weight:700;cursor:pointer;margin:4px 0;font-size:14px}
+button:disabled{opacity:.55}
 .wide{display:block;width:100%}
 .primary{background:#ff3158;color:white}
 .gold{background:#f5d45b;color:#111}
 .green{background:#00c878;color:#06150d}
 .dark{background:#303030;color:white}
+.purple{background:#8b5cf6;color:white}
 .message{font-size:13px;line-height:1.45;margin:10px 0;overflow-wrap:anywhere}
-.error{color:#ff8194}
-.success{color:#71e6a0}
-.info{color:#b8c8ff}
-.divider{display:flex;align-items:center;gap:12px;color:#888;font-size:12px;margin:16px 0}
+.error{color:#ff8194}.success{color:#71e6a0}.info{color:#b8c8ff}
+.divider{display:flex;align-items:center;gap:12px;color:#888;font-size:12px;margin:14px 0}
 .divider:before,.divider:after{content:"";height:1px;background:#444;flex:1}
 .hidden{display:none!important}
 #nav{position:fixed;bottom:0;left:0;right:0;display:flex;background:#111;border-top:1px solid #383838;z-index:10}
-#nav button{flex:1;border-radius:0;background:#111;color:white;font-size:12px;margin:0;padding:15px 3px}
+#nav button{flex:1;border-radius:0;background:#111;color:white;font-size:11px;margin:0;padding:13px 2px}
 #nav button.active{background:#ff3158}
 .post{background:#090909;border:1px solid #333;border-radius:13px;padding:13px;margin:10px 0}
-.post-head{display:flex;justify-content:space-between;gap:8px;margin-bottom:8px}
+.post-head{display:flex;justify-content:space-between;gap:8px}
 .post-name{font-weight:bold;color:#f5d45b}
 .post-date{font-size:10px;color:#888;text-align:right}
 .post-text{white-space:pre-wrap;overflow-wrap:anywhere}
+.post-img{width:100%;border-radius:10px;margin-top:10px;max-height:320px;object-fit:cover}
+.actions{display:flex;gap:6px;flex-wrap:wrap;margin-top:10px}
+.actions button{font-size:12px;padding:8px 11px;background:#222;color:white}
+.actions button.liked{background:#ff3158}
+.filters{display:flex;gap:6px;flex-wrap:wrap;margin:10px 0}
+.filters button{background:#222;color:white;font-size:12px;padding:8px 11px}
+.filters button.active{background:#ff3158}
+.chip{display:inline-block;background:#222;border-radius:20px;padding:7px 12px;font-size:12px;margin:3px}
+.comment{background:#1a1a1a;border-radius:10px;padding:9px;margin:6px 0;font-size:13px}
 .notice{background:#211b08;border-radius:9px;padding:10px;color:#f5d45b;font-size:12px}
-.iti{width:100%;margin:8px 0}
-.iti input{width:100%}
+.badge{background:#ff3158;color:white;border-radius:50%;padding:1px 6px;font-size:11px;font-weight:900}
+.iti{width:100%;margin:8px 0}.iti input{width:100%}
 #recaptcha-container{margin:8px 0}
+.talent-card{background:#181818;border:1px solid #333;border-radius:12px;padding:12px;margin:8px 0}
 </style>
 </head>
-
 <body>
 
 <header>
 <div class="logo">NOVA <span>SHUYA</span> 🌍</div>
-<div class="subtitle">INTERNATIONAL • V22</div>
-<div id="accountStatus">Initialisation de NOVA SHUYA…</div>
+<div class="subtitle">INTERNATIONAL • V22 • FIREBASE</div>
+<div id="accountStatus">Initialisation...</div>
 </header>
 
+<!-- ACCUEIL -->
 <section id="home" class="page active">
 <div class="box">
 <h2>🌍 Bienvenue sur NOVA SHUYA</h2>
-<p class="muted">Un espace pour partager tes idées et découvrir les publications de la communauté.</p>
+<p class="muted">Partage tes idées, découvre la communauté, gagne des points.</p>
+<div id="welcomeBox"></div>
 </div>
 
 <div class="box">
-<h2>📰 Fil d’actualité</h2>
-<div id="feed">
-<p class="muted">Connexion à la base de données…</p>
+<h2>✍️ Écrire quelque chose</h2>
+<textarea id="quickPost" maxlength="2000" placeholder="Quoi de neuf ? Raconte à la communauté..."></textarea>
+<input id="quickPhoto" type="file" accept="image/*">
+<select id="quickCat"><option value="Tout">🌍 Catégorie : Tout</option><option value="International">🌍 International</option><option value="Sport">⚽ Sport</option><option value="Politique">🏛️ Politique</option><option value="Culture">🎤 Culture</option><option value="Quotidien">📅 Quotidien</option><option value="Business">💰 Business</option></select>
+<button class="primary wide" id="quickPublish">🚀 Publier (+10 pts)</button>
+<p id="quickMsg" class="message"></p>
 </div>
+
+<div class="box">
+<h2>📰 Fil d'actualité</h2>
+<div class="filters" id="filters">
+<button class="active" data-f="Tout">🌍 Tout</button><button data-f="International">🌍 Inter</button><button data-f="Sport">⚽ Sport</button><button data-f="Politique">🏛️ Politique</button><button data-f="Culture">🎤 Culture</button><button data-f="Quotidien">📅 Quotidien</button><button data-f="Business">💰 Business</button>
+</div>
+<div id="feed"><p class="muted">Connexion à Firebase...</p></div>
+</div>
+
+<div class="box">
+<h2>🔥 Infos du jour</h2>
+<p>🌍 <b>International :</b> Le monde bouge, reste informé sur NOVA SHUYA.</p>
+<p>⚽ <b>Sport :</b> Les matchs, les scores, les talents d'Abidjan et d'ailleurs.</p>
+<p>🏛️ <b>Politique :</b> Débats et actualités, sans haine, avec respect.</p>
 </div>
 </section>
 
-<section id="account" class="page">
+<!-- TALENT -->
+<section id="talent" class="page">
+<div class="box"><h2>🏆 TALENT - Les 12 Innovations</h2><p class="muted">Ton score : <b id="myPoints">0 pts</b> • <span id="myLevel">Niveau 1 - Nouveau</span></p><div id="topTalents"></div></div>
+<div class="box">
+<div class="talent-card"><h3>1. 🎭 Mystère</h3><p>Publie anonymement, les autres devinent qui c'est.</p><input id="mystereInput" placeholder="Ton secret / mystère..."><button class="gold" onclick="publishSpecial('Mystère',document.getElementById('mystereInput').value)">Publier en Mystère</button></div>
+<div class="talent-card"><h3>2. 🔮 Oracle</h3><p>Prédis l'avenir. Ex: Qui va gagner le prochain match ?</p><input id="oracleInput" placeholder="Ta prédiction..."><button class="gold" onclick="publishSpecial('Oracle',document.getElementById('oracleInput').value)">Publier Prédiction</button></div>
+<div class="talent-card"><h3>3. ⚔️ Duel</h3><p>Défie quelqu'un : Aïcha vs Kevin, qui est le meilleur ? Vote !</p><input id="duelInput" placeholder="Ton duel : Ex: Aïcha vs Kevin"><button class="gold" onclick="publishSpecial('Duel',document.getElementById('duelInput').value)">Lancer un Duel</button></div>
+<div class="talent-card"><h3>4. 👑 Battle Royale</h3><p>Le concours du mois. Poste ton talent, gagne des votes.</p><button class="primary" onclick="showPage('write')">Participer au Battle</button></div>
+<div class="talent-card"><h3>5. 🎡 Roue de la Chance</h3><p id="roueResult">Tourne la roue et gagne des points !</p><button class="purple" onclick="tournerRoue()">🎡 Tourner la Roue</button></div>
+<div class="talent-card"><h3>6. 🎤 Voix de NOVA</h3><p>Enregistre ton message vocal (texte pour l'instant).</p><input id="voixInput" placeholder="Ton message vocal en texte..."><button class="gold" onclick="publishSpecial('Voix',document.getElementById('voixInput').value)">Publier Voix</button></div>
+<div class="talent-card"><h3>7. ⏳ Capsule Temporelle</h3><p>Écris un message pour le futur.</p><input id="capsuleInput" placeholder="Message pour dans 1 an..."><button class="gold" onclick="publishSpecial('Capsule',document.getElementById('capsuleInput').value)">Sceller ma Capsule</button></div>
+<div class="talent-card"><h3>8. 📡 Radar Talent</h3><p>Découvre les talents près de chez toi : Abidjan, Bouaké, Dakar, Paris...</p><p><span class="chip">🎤 Chanteur - Abidjan</span><span class="chip">⚽ Footballeur - Bouaké</span><span class="chip">💻 Développeur - Dakar</span><span class="chip">🎨 Artiste - Paris</span></p></div>
+<div class="talent-card"><h3>9. ⏰ Défi 24H</h3><p>Défi du jour : Publie une photo de ton quartier !</p><button class="primary" onclick="showPage('write')">Relever le Défi</button></div>
+<div class="talent-card"><h3>10. 🤫 Confession</h3><p>Confesse-toi anonymement, sans jugement.</p><input id="confInput" placeholder="Ta confession..."><button class="gold" onclick="publishSpecial('Confession',document.getElementById('confInput').value)">Confesser</button></div>
+<div class="talent-card"><h3>11. 🛍️ Marché NOVA</h3><p>Vends ou achète : vêtements, téléphones, services.</p><input id="marcheInput" placeholder="Ex: Je vends iPhone 11 - 80.000 FCFA"><button class="gold" onclick="publishSpecial('Marché',document.getElementById('marcheInput').value)">Publier Annonce</button></div>
+<div class="talent-card"><h3>12. ⭐ Points & Niveaux</h3><p>Publier = +10 pts • Commenter = +2 pts • Liker = +1 pt • Compte = +50 pts<br>Niveau 1: 0-99 | Niveau 2: 100-299 | Niveau 3: 300-599 | Légende: 600+</p></div>
+</div>
+</section>
 
+<!-- LIVE -->
+<section id="live" class="page">
+<div class="box"><h2>🔴 LIVE</h2><p class="muted">Crée ton live ou regarde les autres.</p><input id="liveTitle" placeholder="Titre de ton LIVE..."><button class="primary wide" onclick="goLive()">🔴 Lancer mon LIVE</button><p id="liveMsg" class="message"></p></div>
+<div class="box"><h2>En direct maintenant</h2><div class="post"><b>🔴 Mariam - LIVE</b><p>Discussion : La vie à Abidjan</p><button class="primary" onclick="alert('LIVE de Mariam - Bientôt en vidéo réelle')">▶️ Regarder</button></div><div class="post"><b>🔴 Kevin - LIVE</b><p>Musique : Nouveaux sons</p><button class="primary" onclick="alert('LIVE de Kevin')">▶️ Regarder</button></div><div class="post"><b>🔴 Animateur NOVA - LIVE</b><p>Débat du jour</p><button class="primary" onclick="alert('LIVE Animateur')">▶️ Regarder</button></div></div>
+</section>
+
+<!-- EXPLORER -->
+<section id="explore" class="page">
+<div class="box"><h2>🧠 EXPLORER - 8 Espaces</h2></div>
+<div class="box"><h3>13. 💬 Débat</h3><p>Débat du jour : Faut-il interdire les téléphones à l'école ?</p><button class="dark" onclick="publishSpecial('Débat','Débat : Téléphones à l\'école - Mon avis : ')">Donner mon avis</button></div>
+<div class="box"><h3>14. 💼 Emploi</h3><p>Offres : Serveur à Abidjan, Vendeuse à Bouaké, Développeur à distance.</p><input id="emploiInput" placeholder="Je cherche / Je propose un emploi..."><button class="gold" onclick="publishSpecial('Emploi',document.getElementById('emploiInput').value)">Publier Offre</button></div>
+<div class="box"><h3>15. 👨‍🏫 Mentor</h3><p>Trouve un mentor ou deviens mentor. Pose ta question.</p><input id="mentorInput" placeholder="Ta question pour un mentor..."><button class="gold" onclick="publishSpecial('Mentor',document.getElementById('mentorInput').value)">Demander à un Mentor</button></div>
+<div class="box"><h3>16. 📚 Savoir 1 Min</h3><p>Apprends en 1 minute : "Abidjan veut dire..." - Partage ton savoir.</p><input id="savoirInput" placeholder="Ton savoir en 1 min..."><button class="gold" onclick="publishSpecial('Savoir',document.getElementById('savoirInput').value)">Partager Savoir</button></div>
+<div class="box"><h3>17. 🚀 Entrepreneur</h3><p>Présente ton business, trouve des clients.</p><input id="businessInput" placeholder="Mon business : ..."><button class="gold" onclick="publishSpecial('Business',document.getElementById('businessInput').value)">Présenter mon Business</button></div>
+<div class="box"><h3>18. ❤️ Santé</h3><p>Conseils santé, bien-être, sport. Pas de diagnostic médical.</p><input id="santeInput" placeholder="Ton conseil santé..."><button class="gold" onclick="publishSpecial('Santé',document.getElementById('santeInput').value)">Partager Conseil</button></div>
+<div class="box"><h3>19. 👨‍👩‍👧 Parents</h3><p>Conseils pour les parents, éducation des enfants.</p><input id="parentInput" placeholder="Ton conseil parent..."><button class="gold" onclick="publishSpecial('Parents',document.getElementById('parentInput').value)">Partager</button></div>
+<div class="box"><h3>20. ✅ Vérité</h3><p>Vérifie une info : Vrai ou Faux ? Pose ta question.</p><input id="veriteInput" placeholder="Est-ce vrai que... ?"><button class="gold" onclick="publishSpecial('Vérité',document.getElementById('veriteInput').value)">Vérifier</button></div>
+</section>
+
+<!-- MESSAGES -->
+<section id="messages" class="page">
+<div class="box"><h2>💬 Messages <span id="msgBadge"></span></h2><p class="muted">Choisis une personne, écris, envoie. C'est en temps réel avec Firebase.</p><input id="msgTo" placeholder="À qui ? Ex: Aicha, Kevin, Mariam"><textarea id="msgText" placeholder="Ton message..."></textarea><button class="primary wide" id="sendMsgBtn">Envoyer le message</button><p id="msgStatus" class="message"></p></div>
+<div class="box"><h2>Conversations</h2><div id="msgList"><p class="muted">Aucun message pour le moment.</p></div></div>
+</section>
+
+<!-- NOTIFS -->
+<section id="notifs" class="page">
+<div class="box"><h2>🔔 Notifications <span id="notifBadge"></span></h2><div id="notifList"><p class="muted">Aucune notification.</p></div><button class="dark wide" id="clearNotifs">Effacer les notifications</button></div>
+</section>
+
+<!-- COMPTE -->
+<section id="account" class="page">
 <div class="box" id="authBox">
 <h2>👤 Créer un compte / Se connecter</h2>
-
-<p class="muted">Tu peux utiliser ton adresse e-mail ou ton numéro de téléphone.</p>
-
-<input id="fullName" type="text" autocomplete="name" placeholder="Ton nom ou pseudonyme">
-
-<h3>✉️ Avec une adresse e-mail</h3>
-
-<input id="email" type="email" autocomplete="email" placeholder="Adresse e-mail">
-
-<input id="password" type="password" autocomplete="new-password" placeholder="Mot de passe (6 caractères minimum)">
-
-<button type="button" class="primary wide" id="signupBtn">Créer mon compte</button>
-
-<button type="button" class="gold wide" id="loginBtn">Se connecter</button>
-
+<p class="muted">Email ou téléphone. Les deux marchent.</p>
+<input id="fullName" type="text" placeholder="Ton nom ou pseudonyme">
+<h3>✉️ Avec Email</h3>
+<input id="email" type="email" placeholder="Adresse e-mail">
+<input id="password" type="password" placeholder="Mot de passe (6 caractères min)">
+<button class="primary wide" id="signupBtn">Créer mon compte (+50 pts)</button>
+<button class="gold wide" id="loginBtn">Se connecter</button>
 <div class="divider">OU</div>
-
-<h3>📱 Avec un numéro de téléphone</h3>
-
-<p class="muted">Choisis ton pays et entre ton numéro. Un code de vérification sera envoyé par SMS.</p>
-
-<input id="phone" type="tel" autocomplete="tel" inputmode="tel" placeholder="Numéro de téléphone">
-
-<button type="button" class="green wide" id="sendCodeBtn">Envoyer un code SMS</button>
-
+<h3>📱 Avec Téléphone</h3>
+<p class="muted">Choisis ton pays, entre ton numéro, reçois un code SMS.</p>
+<input id="phone" type="tel" placeholder="Numéro de téléphone">
+<button class="green wide" id="sendCodeBtn">Envoyer un code SMS</button>
 <div id="phoneCodeArea" class="hidden">
-
-<input id="smsCode" type="text" inputmode="numeric" autocomplete="one-time-code" maxlength="6" placeholder="Code reçu par SMS">
-
-<button type="button" class="primary wide" id="verifyCodeBtn">Vérifier le code et continuer</button>
-
-<button type="button" class="dark wide" id="changePhoneBtn">Changer de numéro</button>
-
+<input id="smsCode" type="text" inputmode="numeric" maxlength="6" placeholder="Code SMS 6 chiffres">
+<button class="primary wide" id="verifyCodeBtn">Vérifier le code</button>
+<button class="dark wide" id="changePhoneBtn">Changer de numéro</button>
 </div>
-
 <div id="recaptcha-container"></div>
-
-<p id="authMessage" class="message" role="status" aria-live="polite"></p>
-
-<p class="muted">Les SMS peuvent être payants selon le pays. Ne communique jamais ton code à quelqu’un.</p>
+<p id="authMessage" class="message"></p>
+<p class="muted">Ne partage jamais ton code SMS.</p>
 </div>
-
 <div class="box hidden" id="profileBox">
-
-<h2>✅ Mon compte</h2>
-
-<p id="profileName"></p>
-
-<p id="profileContact" class="muted"></p>
-
-<button type="button" class="primary wide" id="logoutBtn">Se déconnecter</button>
-
+<h2>✅ Mon compte</h2><p id="profileName"></p><p id="profileContact" class="muted"></p><p id="profilePoints" class="muted"></p>
+<button class="primary wide" id="logoutBtn">Se déconnecter</button>
 </div>
 </section>
 
+<!-- PUBLIER -->
 <section id="write" class="page">
-
-<div class="box">
-<h2>✍️ Écrire une publication</h2>
-
-<p class="muted">Connecte-toi pour publier un message visible par les autres membres.</p>
-
-<textarea id="postText" maxlength="2000" placeholder="Quoi de neuf ?"></textarea>
-
-<button type="button" class="primary wide" id="publishBtn">🚀 Publier</button>
-
-<p id="postMessage" class="message" role="status"></p>
-</div>
-
+<div class="box"><h2>✍️ Écrire une publication</h2><textarea id="postText" maxlength="2000" placeholder="Quoi de neuf ?"></textarea><input id="postPhoto" type="file" accept="image/*"><select id="postCat"><option value="Tout">🌍 Tout</option><option value="International">🌍 International</option><option value="Sport">⚽ Sport</option><option value="Politique">🏛️ Politique</option><option value="Culture">🎤 Culture</option><option value="Quotidien">📅 Quotidien</option><option value="Business">💰 Business</option></select><button class="primary wide" id="publishBtn">🚀 Publier</button><p id="postMessage" class="message"></p></div>
 </section>
 
+<!-- INFOS -->
 <section id="about" class="page">
-
-<div class="box">
-<h2>👑 NOVA SHUYA V22</h2>
-
-<p>Cette version contient l’inscription et la connexion par e-mail, la connexion par téléphone avec code SMS et le fil de publications Firebase.</p>
-
-<div class="notice">
-Les messages privés, les notifications, les photos et les vidéos ne sont pas encore intégrés dans cette version. Nous les ajouterons après validation des comptes et des publications.
-</div>
-
-</div>
+<div class="box"><h2>👑 NOVA SHUYA V22</h2><p>Version Firebase complète : Comptes Email + SMS, Fil, Likes, Commentaires, Messages, Notifications, Talent, Live, Explorer, Photos.</p><div class="notice">Si un bouton ne marche pas, vérifie : 1) Domaine github ajouté dans Firebase 2) Règles publiées 3) Email/Phone activés.</div></div>
 </section>
 
 <nav id="nav">
-<button type="button" class="active" data-page="home">🏠 Accueil</button>
-<button type="button" data-page="write">✍️ Publier</button>
-<button type="button" data-page="account">👤 Compte</button>
-<button type="button" data-page="about">ℹ️ Infos</button>
+<button class="active" data-page="home">🏠 Accueil</button>
+<button data-page="talent">🏆 Talent</button>
+<button data-page="live">🔴 Live</button>
+<button data-page="explore">🧠 Explorer</button>
+<button data-page="messages">💬 Messages</button>
+<button data-page="notifs">🔔 Notifs <span id="navNotif"></span></button>
+<button data-page="account">👤 Compte</button>
 </nav>
 
 <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-auth-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-database-compat.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/intl-tel-input@25.3.1/build/js/intlTelInput.min.js"></script>
-
 <script>
 'use strict';
-
-// CONFIGURATION FIREBASE NOVA SHUYA
-
-const firebaseConfig = {
-apiKey: "AIzaSyAJMrnzb5-6SvqP-dKEDrGhrHZ_uMn6nZs",
-authDomain: "novashuya.firebaseapp.com",
-databaseURL: "https://novashuya-default-rtdb.firebaseio.com",
-projectId: "novashuya",
-storageBucket: "novashuya.firebasestorage.app",
-messagingSenderId: "597908625291",
-appId: "1:597908625291:web:2b8f00eb20e6eddffe018e",
-measurementId: "G-GJYXTW0HKD"
-};
-
-let auth = null;
-let db = null;
-let currentUser = null;
-let phoneWidget = null;
-let confirmationResult = null;
-let recaptchaVerifier = null;
-let postsQuery = null;
-let postsCallback = null;
-
-const $ = id => document.getElementById(id);
-
-function message(id,text,type='info'){
-const element=$(id);
-if(!element)return;
-element.textContent=text;
-element.className='message '+type;
-}
-
-function friendlyError(error){
-
-const code=error&&error.code?error.code:'';
-
-const known={
-
-'auth/email-already-in-use':'Cette adresse e-mail possède déjà un compte. Utilise « Se connecter ».',
-
-'auth/invalid-email':'L’adresse e-mail n’est pas valide.',
-
-'auth/weak-password':'Le mot de passe doit contenir au moins 6 caractères.',
-
-'auth/user-not-found':'Aucun compte trouvé avec cette adresse e-mail.',
-
-'auth/wrong-password':'Mot de passe incorrect.',
-
-'auth/invalid-credential':'Adresse e-mail ou mot de passe incorrect.',
-
-'auth/unauthorized-domain':'Ce domaine n’est pas autorisé par Firebase. Ouvre le site depuis novashuya.web.app ou ajoute le domaine exact dans Firebase Authentication.',
-
-'auth/network-request-failed':'Connexion Internet indisponible. Vérifie Internet puis réessaie.',
-
-'auth/too-many-requests':'Trop de tentatives. Attends avant de réessayer.',
-
-'auth/invalid-phone-number':'Numéro invalide. Vérifie le pays et le numéro.',
-
-'auth/missing-phone-number':'Entre un numéro de téléphone.',
-
-'auth/quota-exceeded':'Le quota de SMS est atteint. Réessaie plus tard.',
-
-'auth/captcha-check-failed':'La vérification anti-robot a échoué. Recharge la page et réessaie.',
-
-'auth/invalid-verification-code':'Le code SMS est incorrect.',
-
-'auth/code-expired':'Le code SMS a expiré. Demande un nouveau code.',
-
-'auth/session-expired':'La vérification a expiré. Demande un nouveau code.',
-
-'auth/operation-not-allowed':'Cette méthode n’est pas activée dans Firebase Authentication.',
-
-'PERMISSION_DENIED':'Firebase a refusé l’accès à la base de données. Vérifie les règles Realtime Database.'
-
-};
-
-return known[code]||(error&&error.message)||'Une erreur inconnue est survenue.';
-}
-
-function showPage(pageId){
-
-document.querySelectorAll('.page').forEach(page=>{
-page.classList.toggle('active',page.id===pageId);
-});
-
-document.querySelectorAll('#nav button').forEach(button=>{
-button.classList.toggle('active',button.dataset.page===pageId);
-});
-
-}
-
-function getE164Phone(){
-
-if(phoneWidget){
-
-try{
-
-if(typeof phoneWidget.isValidNumber==='function'&&!phoneWidget.isValidNumber())return '';
-
-const number=phoneWidget.getNumber();
-
-return number&&number.charAt(0)==='+'?number:'';
-
-}catch(error){
-
-return '';
-
-}
-
-}
-
-const raw=$('phone').value.trim().replace(/[\s().-]/g,'');
-
-return /^\+[1-9]\d{7,14}$/.test(raw)?raw:'';
-
-}
-
-function clearRecaptcha(){
-
-if(recaptchaVerifier){
-
-try{recaptchaVerifier.clear();}catch(error){}
-
-recaptchaVerifier=null;
-
-}
-
-$('recaptcha-container').innerHTML='';
-
-}
-
-// CRÉATION DU COMPTE PAR E-MAIL
-
-async function createAccount(){
-
-if(!auth||!db){
-
-message('authMessage','Firebase ne s’est pas initialisé. Vérifie ta connexion Internet et recharge la page.','error');
-
-return;
-
-}
-
-const name=$('fullName').value.trim();
-const email=$('email').value.trim();
-const password=$('password').value;
-
-if(!name)return message('authMessage','Entre ton nom ou pseudonyme.','error');
-
-if(!email)return message('authMessage','Entre ton adresse e-mail.','error');
-
-if(password.length<6)return message('authMessage','Le mot de passe doit contenir au moins 6 caractères.','error');
-
-const button=$('signupBtn');
-
-button.disabled=true;
-button.textContent='Création en cours…';
-
-message('authMessage','Connexion à Firebase…','info');
-
-try{
-
-const credential=await auth.createUserWithEmailAndPassword(email,password);
-
-try{
-
-await credential.user.updateProfile({displayName:name});
-
-}catch(profileError){
-
-console.warn('Profil Firebase non actualisé :',profileError);
-
-}
-
-try{
-
-await db.ref('users/'+credential.user.uid).update({
-
-displayName:name,
-email:email,
-createdAt:firebase.database.ServerValue.TIMESTAMP
-
-});
-
-message('authMessage','Compte créé avec succès ! Tu es connecté.','success');
-
-}catch(databaseError){
-
-message('authMessage','Ton compte est créé et connecté, mais le profil n’a pas pu être enregistré dans la base : '+friendlyError(databaseError),'error');
-
-}
-
-}catch(error){
-
-message('authMessage',friendlyError(error),'error');
-
-}finally{
-
-button.disabled=false;
-button.textContent='Créer mon compte';
-
-}
-
-}
-
-// CONNEXION PAR E-MAIL
-
-async function login(){
-
-if(!auth)return message('authMessage','Firebase Authentication n’est pas prêt. Recharge la page.','error');
-
-const email=$('email').value.trim();
-const password=$('password').value;
-
-if(!email||!password)return message('authMessage','Entre ton adresse e-mail et ton mot de passe.','error');
-
-const button=$('loginBtn');
-
-button.disabled=true;
-button.textContent='Connexion…';
-
-try{
-
-await auth.signInWithEmailAndPassword(email,password);
-
-message('authMessage','Connexion réussie !','success');
-
-}catch(error){
-
-message('authMessage',friendlyError(error),'error');
-
-}finally{
-
-button.disabled=false;
-button.textContent='Se connecter';
-
-}
-
-}
-
-// ENVOI DU CODE SMS
-
-async function sendPhoneCode(){
-
-if(!auth)return message('authMessage','Firebase Authentication n’est pas prêt. Recharge la page.','error');
-
-const phoneNumber=getE164Phone();
-
-if(!phoneNumber){
-
-return message('authMessage','Numéro invalide. Choisis ton pays et saisis ton numéro. Si le sélecteur ne charge pas, écris le numéro au format international, par exemple +2250700000000.','error');
-
-}
-
-const button=$('sendCodeBtn');
-
-button.disabled=true;
-button.textContent='Envoi du SMS…';
-
-message('authMessage','Préparation de la vérification anti-robot…','info');
-
-try{
-
-clearRecaptcha();
-
-recaptchaVerifier=new firebase.auth.RecaptchaVerifier('recaptcha-container',{
-size:'normal'
-});
-
-await recaptchaVerifier.render();
-
-confirmationResult=await auth.signInWithPhoneNumber(phoneNumber,recaptchaVerifier);
-
-$('phoneCodeArea').classList.remove('hidden');
-
-$('smsCode').focus();
-
-message('authMessage','Code envoyé par SMS. Saisis les 6 chiffres reçus.','success');
-
-}catch(error){
-
-clearRecaptcha();
-
-message('authMessage',friendlyError(error),'error');
-
-}finally{
-
-button.disabled=false;
-button.textContent='Envoyer un code SMS';
-
-}
-
-}
-
-// VÉRIFICATION DU CODE SMS
-
-async function verifyPhoneCode(){
-
-if(!confirmationResult)return message('authMessage','Demande d’abord un code SMS.','error');
-
-const code=$('smsCode').value.trim();
-
-if(!/^\d{6}$/.test(code))return message('authMessage','Entre le code à 6 chiffres reçu par SMS.','error');
-
-const button=$('verifyCodeBtn');
-
-button.disabled=true;
-button.textContent='Vérification…';
-
-try{
-
-const result=await confirmationResult.confirm(code);
-
-const user=result.user;
-
-const name=$('fullName').value.trim()||user.displayName||'Membre NOVA SHUYA';
-
-if(!user.displayName){
-
-try{await user.updateProfile({displayName:name});}
-catch(error){console.warn(error);}
-
-}
-
-try{
-
-const ref=db.ref('users/'+user.uid);
-
-const existing=await ref.once('value');
-
-const data={
-
-displayName:name,
-
-phoneNumber:user.phoneNumber||getE164Phone(),
-
-lastLoginAt:firebase.database.ServerValue.TIMESTAMP
-
-};
-
-if(!existing.exists())data.createdAt=firebase.database.ServerValue.TIMESTAMP;
-
-await ref.update(data);
-
-message('authMessage','Numéro vérifié. Ton compte est connecté !','success');
-
-}catch(databaseError){
-
-message('authMessage','Téléphone vérifié et compte connecté, mais profil non enregistré dans la base : '+friendlyError(databaseError),'error');
-
-}
-
-confirmationResult=null;
-
-$('phoneCodeArea').classList.add('hidden');
-
-$('smsCode').value='';
-
-clearRecaptcha();
-
-}catch(error){
-
-message('authMessage',friendlyError(error),'error');
-
-}finally{
-
-button.disabled=false;
-button.textContent='Vérifier le code et continuer';
-
-}
-
-}
-
-function changePhone(){
-
-confirmationResult=null;
-
-$('phoneCodeArea').classList.add('hidden');
-
-$('smsCode').value='';
-
-clearRecaptcha();
-
-message('authMessage','Corrige le numéro puis demande un nouveau code.','info');
-
-}
-
-// PUBLICATIONS
-
-async function publishPost(){
-
-if(!currentUser){
-
-message('postMessage','Connecte-toi avant de publier.','error');
-
-showPage('account');
-
-return;
-
-}
-
-const text=$('postText').value.trim();
-
-if(!text)return message('postMessage','Écris quelque chose avant de publier.','error');
-
-const button=$('publishBtn');
-
-button.disabled=true;
-
-try{
-
-await db.ref('posts').push({
-
-uid:currentUser.uid,
-
-author:currentUser.displayName||currentUser.email||currentUser.phoneNumber||'Membre NOVA SHUYA',
-
-text:text,
-
-createdAt:firebase.database.ServerValue.TIMESTAMP
-
-});
-
-$('postText').value='';
-
-message('postMessage','Publication envoyée !','success');
-
-showPage('home');
-
-}catch(error){
-
-message('postMessage',friendlyError(error),'error');
-
-}finally{
-
-button.disabled=false;
-
-}
-
-}
-
-// AFFICHAGE DES PUBLICATIONS
-
-function displayPosts(snapshot){
-
-const feed=$('feed');
-
-feed.innerHTML='';
-
-if(!snapshot.exists()){
-
-const p=document.createElement('p');
-
-p.className='muted';
-
-p.textContent='Aucune publication pour le moment. Sois le premier à écrire !';
-
-feed.appendChild(p);
-
-return;
-
-}
-
-const posts=[];
-
-snapshot.forEach(child=>posts.push(child.val()));
-
-posts.reverse().forEach(post=>{
-
-const article=document.createElement('article');
-
-article.className='post';
-
-const head=document.createElement('div');
-
-head.className='post-head';
-
-const author=document.createElement('span');
-
-author.className='post-name';
-
-author.textContent=post.author||'Membre NOVA SHUYA';
-
-const date=document.createElement('span');
-
-date.className='post-date';
-
-date.textContent=post.createdAt?new Date(post.createdAt).toLocaleString('fr-FR'):'À l’instant';
-
-const body=document.createElement('p');
-
-body.className='post-text';
-
-body.textContent=post.text||'';
-
-head.append(author,date);
-
-article.append(head,body);
-
-feed.appendChild(article);
-
-});
-
-}
-
-// GESTION DU COMPTE
-
-function updateAccount(user){
-
-currentUser=user;
-
-if(user){
-
-$('accountStatus').textContent='Connecté • '+(user.displayName||user.email||user.phoneNumber||'Membre');
-
-$('authBox').classList.add('hidden');
-
-$('profileBox').classList.remove('hidden');
-
-$('profileName').textContent='Nom : '+(user.displayName||'Membre NOVA SHUYA');
-
-$('profileContact').textContent=user.email?'E-mail : '+user.email:'Téléphone : '+(user.phoneNumber||'Non renseigné');
-
-}else{
-
-$('accountStatus').textContent='Non connecté • Connecte-toi pour participer';
-
-$('authBox').classList.remove('hidden');
-
-$('profileBox').classList.add('hidden');
-
-}
-
-}
-
-// INITIALISATION ET BRANCHEMENT DES BOUTONS
-
-function startApp(){
-
-document.querySelectorAll('#nav button').forEach(button=>{
-
-button.addEventListener('click',()=>showPage(button.dataset.page));
-
-});
-
-$('signupBtn').addEventListener('click',createAccount);
-
-$('loginBtn').addEventListener('click',login);
-
-$('sendCodeBtn').addEventListener('click',sendPhoneCode);
-
-$('verifyCodeBtn').addEventListener('click',verifyPhoneCode);
-
-$('changePhoneBtn').addEventListener('click',changePhone);
-
-$('publishBtn').addEventListener('click',publishPost);
-
-$('logoutBtn').addEventListener('click',async()=>{
-
-if(!auth)return;
-
-try{
-
-await auth.signOut();
-
-message('authMessage','Tu es déconnecté.','info');
-
-}catch(error){
-
-message('authMessage',friendlyError(error),'error');
-
-}
-
-});
-
-// SÉLECTEUR INTERNATIONAL
-
-if(window.intlTelInput&&$('phone')){
-
-try{
-
-phoneWidget=window.intlTelInput($('phone'),{
-
-initialCountry:'ci',
-separateDialCode:true,
-nationalMode:true,
-
-preferredCountries:['ci','fr','us','gb','gh','sn','bf','ml','ng','za'],
-
-utilsScript:'https://cdn.jsdelivr.net/npm/intl-tel-input@25.3.1/build/js/utils.js'
-
-});
-
-}catch(error){
-
-console.warn('Sélecteur international indisponible :',error);
-
-}
-
-}
-
-// VÉRIFICATION FIREBASE
-
-if(!window.firebase||!firebase.initializeApp){
-
-$('accountStatus').textContent='Firebase SDK non chargé : vérifie Internet ou les scripts Firebase.';
-
-$('feed').textContent='Impossible de charger Firebase. Vérifie ta connexion Internet.';
-
-message('authMessage','Firebase SDK non chargé. Les boutons sont actifs, mais les comptes nécessitent une connexion à Firebase.','error');
-
-return;
-
-}
-
-try{
-
-if(!firebase.apps.length)firebase.initializeApp(firebaseConfig);
-
-auth=firebase.auth();
-
-db=firebase.database();
-
-$('accountStatus').textContent='Firebase connecté • Vérification du compte…';
-
-auth.onAuthStateChanged(updateAccount,error=>{
-
-$('accountStatus').textContent='Erreur de vérification du compte';
-
-message('authMessage',friendlyError(error),'error');
-
-});
-
-postsQuery=db.ref('posts').limitToLast(100);
-
-postsCallback=snapshot=>displayPosts(snapshot);
-
-postsQuery.on('value',postsCallback,error=>{
-
-$('feed').textContent=friendlyError(error);
-
-});
-
-}catch(error){
-
-$('accountStatus').textContent='Erreur d’initialisation Firebase';
-
-$('feed').textContent=friendlyError(error);
-
-message
+const firebaseConfig={apiKey:"AIzaSyAJMrnzb5-6SvqP-dKEDrGhrHZ_uMn6nZs",authDomain:"novashuya.firebaseapp.com",databaseURL:"https://novashuya-default-rtdb.firebaseio.com",projectId:"novashuya",storageBucket:"novashuya.firebasestorage.app",messagingSenderId:"597908625291",appId:"1:597908625291:web:2b8f00eb20e6eddffe018e",measurementId:"G-GJYXTW0HKD"};
+let auth=null,db=null,currentUser=null,phoneWidget=null,confirmationResult=null,recaptchaVerifier=null,allPosts=[],currentFilter='Tout',myPoints=0;
+const $=id=>document.getElementById(id);
+function msg(id,t,type='info'){const e=$(id);if(!e)return;e.textContent=t;e.className='message '+type;}
+function friendly(e){const c=e&&e.code?e.code:'';const k={'auth/email-already-in-use':'Email déjà utilisé. Clique Se connecter.','auth/invalid-email':'Email invalide.','auth/weak-password':'Mot de passe 6 caractères min.','auth/user-not-found':'Aucun compte avec cet email.','auth/wrong-password':'Mot de passe incorrect.','auth/invalid-credential':'Email ou mot de passe incorrect.','auth/unauthorized-domain':'Domaine non autorisé. Ajoute gnonzion74-sudo.github.io dans Firebase > Authentication > Domaines.','auth/network-request-failed':'Pas de connexion Internet.','auth/too-many-requests':'Trop de tentatives, attends.','auth/invalid-phone-number':'Numéro invalide.','auth/missing-phone-number':'Entre un numéro.','auth/quota-exceeded':'Quota SMS atteint.','auth/captcha-check-failed':'Anti-robot échoué, recharge la page.','auth/invalid-verification-code':'Code SMS incorrect.','auth/code-expired':'Code expiré, redemande.','auth/operation-not-allowed':'Méthode non activée dans Firebase.','PERMISSION_DENIED':'Accès refusé. Vérifie les Règles Realtime Database et clique Publier.'};return k[c]||(e&&e.message)||'Erreur inconnue.';}
+function showPage(p){document.querySelectorAll('.page').forEach(x=>x.classList.toggle('active',x.id===p));document.querySelectorAll('#nav button').forEach(b=>b.classList.toggle('active',b.dataset.page===p));window.scrollTo(0,0);}
+function getE164(){if(phoneWidget){try{if(typeof phoneWidget.isValidNumber==='function'&&!phoneWidget.isValidNumber())return '';const n=phoneWidget.getNumber();return n&&n.charAt(0)==='+'?n:'';}catch(e){return '';}}const r=$('phone').value.trim().replace(/[\s().-]/g,'');return /^\+[1-9]\d{7,14}$/.test(r)?r:'';}
+function clearRecaptcha(){if(recaptchaVerifier){try{recaptchaVerifier.clear();}catch(e){}recaptchaVerifier=null;}$('recaptcha-container').innerHTML='';}
+function getLevel(pts){if(pts>=600)return 'Légende NOVA 👑';if(pts>=300)return 'Niveau 3 - Star ⭐';if(pts>=100)return 'Niveau 2 - Talent 🔥';return 'Niveau 1 - Nouveau 🌱';}
+async function addPoints(n){if(!currentUser||!db)return;myPoints+=n;try{await db.ref('users/'+currentUser.uid+'/points').set(myPoints);}catch(e){}updatePointsUI();}
+function updatePointsUI(){$('myPoints').textContent=myPoints+' pts';$('myLevel').textContent=getLevel(myPoints);if($('profilePoints'))$('profilePoints').textContent='Points : '+myPoints+' • '+getLevel(myPoints);if($('welcomeBox')&&currentUser)$('welcomeBox').innerHTML='<p>Bonjour <b>'+(currentUser.displayName||'Membre')+'</b> ! Tu as <b>'+myPoints+' pts</b> • '+getLevel(myPoints)+'</p>';}
+async function createAccount(){if(!auth)return msg('authMessage','Firebase pas prêt.','error');con
