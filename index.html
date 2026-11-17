@@ -1,98 +1,832 @@
+
 <!DOCTYPE html>
-<html lang="fr"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><title>NOVA SHUYA V20 - MESSAGES + NOTIFS</title>
-<style>*{margin:0;padding:0;box-sizing:border-box;font-family:Arial}body{background:#000;color:#fff;padding-bottom:110px}
-.logo{font-size:32px;font-weight:900;letter-spacing:3px;line-height:1}.logo span{color:#ff2d55}.logo-box{display:flex;align-items:center;justify-content:center;gap:10px}.logo-icone{width:52px;height:52px;background:linear-gradient(135deg,gold,#ff2d55);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:28px;border:2px solid #fff}
-header{background:#000;padding:14px;text-align:center;position:sticky;top:0;z-index:99;border-bottom:2px solid #222}.bar{background:#222;height:12px;border-radius:10px;margin:8px 20px;overflow:hidden}.bar div{height:100%;background:linear-gradient(90deg,gold,#ff2d55)}
-.page{display:none}.page:target{display:block}body:not(:has(:target)) #page-accueil{display:block}
-.box{background:#111;margin:12px;border-radius:18px;padding:16px;border:1px solid #222;text-align:center}.box input,.box select,.box textarea{width:100%;padding:12px;border-radius:12px;border:1px solid #333;background:#000;color:#fff;margin:6px 0}.btn{display:inline-block;background:#fff;color:#000;padding:11px 14px;border-radius:20px;font-size:13px;margin-top:8px;border:none;cursor:pointer;font-weight:bold;text-decoration:none}.btn-red{background:#ff2d55;color:#fff}.btn-gold{background:gold;color:#000}.btn-green{background:#00c853;color:#fff}.btn-blue{background:#00c6ff;color:#fff}.btn-orange{background:#ff8c00;color:#fff}.btn-purple{background:#a100ff;color:#fff}.card{background:#000;border:1px solid #333;border-radius:12px;padding:12px;margin:8px 0;text-align:left}.myst{width:120px;height:120px;border-radius:50%;border:3px solid gold;filter:blur(18px) brightness(.2);object-fit:cover}.myst.ok{filter:none}#roue{font-size:60px;display:inline-block;transition:transform 2s}.post{background:#111;margin:12px;border-radius:15px;overflow:hidden;border:1px solid #222}.post img,.post video{width:100%;height:220px;object-fit:cover}.post .info{padding:12px;text-align:left}.acts{padding:0 12px 12px;display:flex;flex-wrap:wrap;gap:6px}.acts span{cursor:pointer;padding:8px 11px;border-radius:18px;background:#222;font-size:12px;font-weight:bold}.acts span.liked{background:#fff;color:#000}.coms{padding:0 12px 12px;font-size:13px;text-align:left}.coms div{background:#222;padding:7px 10px;border-radius:10px;margin-top:6px}.bar2{display:flex;height:14px;border-radius:10px;overflow:hidden;background:#333;margin:8px 0}.opt{width:100%;padding:12px;border-radius:12px;border:1px solid #444;background:#000;color:#fff;margin:5px 0;text-align:left;cursor:pointer}.opt.sel{border-color:gold;background:#332200}#nav{position:fixed;bottom:0;left:0;right:0;background:#111;display:flex;border-top:2px solid #333;z-index:999;overflow-x:auto}#nav a{flex:1;min-width:62px;padding:10px 1px;background:#111;color:#fff;font-size:11px;text-align:center;text-decoration:none;font-weight:bold;white-space:nowrap}#nav a:active,#nav a:focus{background:#ff2d55;color:#fff}.badge{background:#ff2d55;color:#fff;padding:3px 8px;border-radius:10px;font-size:11px}.top-item{display:flex;justify-content:space-between;padding:9px 0;border-bottom:1px solid #222;font-size:14px}.avatar{width:70px;height:70px;border-radius:50%;background:linear-gradient(135deg,gold,#ff2d55);display:flex;align-items:center;justify-content:center;font-size:32px;margin:0 auto;border:2px solid #fff}.label{font-size:12px;color:gold;text-align:left;display:block;margin-top:8px;font-weight:bold}.pill{display:inline-block;background:#222;padding:7px 13px;border-radius:20px;font-size:12px;margin:3px;cursor:pointer}.pill.on{background:gold;color:#000;font-weight:bold}.news{border-left:3px solid gold;padding-left:10px;margin:10px 0;text-align:left}.shortcut{display:flex;gap:8px;flex-wrap:wrap;justify-content:center}.shortcut a{flex:1;min-width:70px;background:#222;padding:12px 4px;border-radius:14px;text-align:center;color:#fff;text-decoration:none;font-size:12px;font-weight:bold}.big-ecrire{background:linear-gradient(135deg,#ff2d55,gold);color:#000;font-size:18px;font-weight:900;padding:18px;border-radius:18px;width:100%;border:none;cursor:pointer;box-shadow:0 0 20px rgba(255,45,85,.5)}.etape{background:#000;border:1px solid #333;border-radius:12px;padding:10px;margin:6px 0;text-align:left}.aide{font-size:13px;color:#aaa;text-align:left;line-height:1.6}.msg-moi{background:#ff2d55;color:#fff;padding:9px 12px;border-radius:14px 14px 4px 14px;margin:6px 0 6px 40px;text-align:right}.msg-autre{background:#222;padding:9px 12px;border-radius:14px 14px 14px 4px;margin:6px 40px 6px 0}.notif{background:#000;border:1px solid #333;border-radius:12px;padding:12px;margin:8px 0;text-align:left}.notif.nouveau{border-color:gold;background:#1a1000}.chat-item{background:#000;border:1px solid #333;border-radius:12px;padding:12px;margin:8px 0;text-align:left;cursor:pointer;display:flex;gap:10px;align-items:center}.dot{background:#ff2d55;color:#fff;font-size:11px;padding:2px 7px;border-radius:10px;font-weight:bold}</style></head>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#050505">
+<title>NOVA SHUYA V22</title>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/intl-tel-input@25.3.1/build/css/intlTelInput.css">
+
+<style>
+*{box-sizing:border-box;font-family:Arial,sans-serif}
+body{margin:0;background:#050505;color:white;padding-bottom:76px}
+header{position:sticky;top:0;z-index:5;text-align:center;background:#090909;border-bottom:1px solid #333;padding:14px}
+.logo{font-size:29px;font-weight:900;letter-spacing:2px}
+.logo span{color:#ff3158}
+.subtitle{color:#f5d45b;font-size:10px;letter-spacing:3px;margin-top:4px}
+#accountStatus{font-size:12px;color:#bbb;margin-top:9px}
+.page{display:none;padding:12px}
+.page.active{display:block}
+.box{background:#111;border:1px solid #303030;border-radius:16px;padding:15px;margin:10px 0}
+h2{font-size:19px;margin:0 0 10px}
+h3{font-size:15px;color:#f5d45b;margin:17px 0 7px}
+p{line-height:1.45;margin:7px 0}
+.muted{font-size:13px;color:#aaa}
+input,textarea{display:block;width:100%;background:#050505;color:white;border:1px solid #484848;border-radius:10px;padding:13px;margin:9px 0;font-size:15px}
+textarea{min-height:100px;resize:vertical}
+button{border:0;border-radius:22px;padding:13px 15px;font-weight:700;cursor:pointer;margin:5px 0;font-size:14px}
+button:disabled{opacity:.55;cursor:not-allowed}
+.wide{display:block;width:100%}
+.primary{background:#ff3158;color:white}
+.gold{background:#f5d45b;color:#111}
+.green{background:#00c878;color:#06150d}
+.dark{background:#303030;color:white}
+.message{font-size:13px;line-height:1.45;margin:10px 0;overflow-wrap:anywhere}
+.error{color:#ff8194}
+.success{color:#71e6a0}
+.info{color:#b8c8ff}
+.divider{display:flex;align-items:center;gap:12px;color:#888;font-size:12px;margin:16px 0}
+.divider:before,.divider:after{content:"";height:1px;background:#444;flex:1}
+.hidden{display:none!important}
+#nav{position:fixed;bottom:0;left:0;right:0;display:flex;background:#111;border-top:1px solid #383838;z-index:10}
+#nav button{flex:1;border-radius:0;background:#111;color:white;font-size:12px;margin:0;padding:15px 3px}
+#nav button.active{background:#ff3158}
+.post{background:#090909;border:1px solid #333;border-radius:13px;padding:13px;margin:10px 0}
+.post-head{display:flex;justify-content:space-between;gap:8px;margin-bottom:8px}
+.post-name{font-weight:bold;color:#f5d45b}
+.post-date{font-size:10px;color:#888;text-align:right}
+.post-text{white-space:pre-wrap;overflow-wrap:anywhere}
+.notice{background:#211b08;border-radius:9px;padding:10px;color:#f5d45b;font-size:12px}
+.iti{width:100%;margin:8px 0}
+.iti input{width:100%}
+#recaptcha-container{margin:8px 0}
+</style>
+</head>
+
 <body>
+
 <header>
-<div class="logo-box"><div class="logo-icone">👑</div><div style="text-align:left"><div class="logo">NOVA <span>SHUYA</span> 🌍</div><div style="font-size:11px;letter-spacing:3px;color:gold">INTERNATIONAL • MESSAGES + NOTIFS</div></div></div>
-<p style="margin-top:10px">🇨🇮 🇸🇳 🇲🇱 🇳🇬 🇫🇷 🇨🇲 🇬🇳</p>
-<p style="margin-top:8px" id="zoneCompte">👤 <b>Pas connecté</b> • <a href="#page-compte" style="color:gold;font-weight:bold">Créer un compte / Se connecter</a></p>
-<p>⭐ <b id="niv">NOUVEAU 🌱</b> • <b id="pts">0 points</b> • <span id="notifHeader">🔔 0</span></p><div class="bar"><div id="barre" style="width:0%"></div></div>
-<p style="font-size:11px;color:#aaa">V20 - MESSAGES PRIVÉS + NOTIFICATIONS LIKE / COMMENT / PARTAGE</p>
-<div style="display:flex;gap:8px;margin-top:8px"><input id="recherche" placeholder="🔍 Rechercher..." oninput="rechercher()" style="flex:1;padding:12px;border-radius:25px;border:1px solid #333;background:#111;color:#fff"></div>
+<div class="logo">NOVA <span>SHUYA</span> 🌍</div>
+<div class="subtitle">INTERNATIONAL • V22</div>
+<div id="accountStatus">Initialisation de NOVA SHUYA…</div>
 </header>
 
-<!-- ACCUEIL -->
-<div id="page-accueil" class="page">
-<div class="box" style="border:2px solid gold;background:linear-gradient(135deg,#1a0033,#000);text-align:left">
-<p id="bonjourTxt" style="font-size:22px;font-weight:bold">👋 Bonjour !</p>
-<p id="dateJour" style="color:#aaa;font-size:13px"></p>
-<p id="meteoTxt" style="margin-top:8px">☀️ Abidjan : 29°C - Ensoleillé</p>
-<p style="margin-top:8px;background:#000;padding:10px;border-radius:12px">💡 <b>Citation du jour :</b> <span id="citationTxt">"Ne cherche pas à être parfait, cherche à être meilleur qu'hier."</span></p>
-<div class="shortcut" style="margin-top:12px"><a href="#page-messages">💬<br>MESSAGES<br><span id="msgCount" style="font-size:10px;color:#00c853">0 messages</span></a><a href="#page-notifs">🔔<br>NOTIFS<br><span id="notifCount2" style="font-size:10px;color:gold">0 nouvelles</span></a><a href="#page-talent">🏆<br>TALENT</a><a href="#page-live">🔴<br>LIVE</a></div>
-<div style="margin-top:10px"><span class="pill on" onclick="filtrerCat('tout',this)">🌍 Tout</span><span class="pill" onclick="filtrerCat('inter',this)">🌍 International</span><span class="pill" onclick="filtrerCat('sport',this)">⚽ Sport</span><span class="pill" onclick="filtrerCat('politique',this)">🏛️ Politique</span><span class="pill" onclick="filtrerCat('culture',this)">🎤 Culture</span><span class="pill" onclick="filtrerCat('quotidien',this)">📅 Quotidien</span><span class="pill" onclick="filtrerCat('business',this)">💰 Business</span></div>
+<section id="home" class="page active">
+<div class="box">
+<h2>🌍 Bienvenue sur NOVA SHUYA</h2>
+<p class="muted">Un espace pour partager tes idées et découvrir les publications de la communauté.</p>
 </div>
 
-<div class="box" style="border:3px solid #ff2d55;background:linear-gradient(135deg,#330000,#000)">
-<h2 style="font-size:20px">👇 TU VEUX ÉCRIRE ? C'EST ICI !</h2>
-<p style="color:#aaa;margin:8px 0">Clique sur le gros bouton, écris, publie. C'est tout !</p>
-<button class="big-ecrire" onclick="allerEcrire()">✍️ ÉCRIRE QUELQUE CHOSE ✍️</button>
+<div class="box">
+<h2>📰 Fil d’actualité</h2>
+<div id="feed">
+<p class="muted">Connexion à la base de données…</p>
+</div>
+</div>
+</section>
+
+<section id="account" class="page">
+
+<div class="box" id="authBox">
+<h2>👤 Créer un compte / Se connecter</h2>
+
+<p class="muted">Tu peux utiliser ton adresse e-mail ou ton numéro de téléphone.</p>
+
+<input id="fullName" type="text" autocomplete="name" placeholder="Ton nom ou pseudonyme">
+
+<h3>✉️ Avec une adresse e-mail</h3>
+
+<input id="email" type="email" autocomplete="email" placeholder="Adresse e-mail">
+
+<input id="password" type="password" autocomplete="new-password" placeholder="Mot de passe (6 caractères minimum)">
+
+<button type="button" class="primary wide" id="signupBtn">Créer mon compte</button>
+
+<button type="button" class="gold wide" id="loginBtn">Se connecter</button>
+
+<div class="divider">OU</div>
+
+<h3>📱 Avec un numéro de téléphone</h3>
+
+<p class="muted">Choisis ton pays et entre ton numéro. Un code de vérification sera envoyé par SMS.</p>
+
+<input id="phone" type="tel" autocomplete="tel" inputmode="tel" placeholder="Numéro de téléphone">
+
+<button type="button" class="green wide" id="sendCodeBtn">Envoyer un code SMS</button>
+
+<div id="phoneCodeArea" class="hidden">
+
+<input id="smsCode" type="text" inputmode="numeric" autocomplete="one-time-code" maxlength="6" placeholder="Code reçu par SMS">
+
+<button type="button" class="primary wide" id="verifyCodeBtn">Vérifier le code et continuer</button>
+
+<button type="button" class="dark wide" id="changePhoneBtn">Changer de numéro</button>
+
 </div>
 
-<div class="box" id="zoneEcrire" style="border:3px solid gold;text-align:left;background:#111"><h2 style="text-align:center">✍️ ÉCRIS ICI, C'EST FACILE !</h2>
-<div class="aide">👉 <b>Pour tout le monde :</b><br>1️⃣ Tu mets ton nom<br>2️⃣ Tu écris ton texte<br>3️⃣ Tu cliques sur PUBLIER</div>
-<div class="etape"><b>1️⃣ TON NOM</b><input id="nom" placeholder="Ex : Aicha Diallo - Mets ton Nom Complet"></div>
-<div class="etape"><b>2️⃣ TON WHATSAPP (si tu veux qu'on te contacte)</b><input id="wa" placeholder="Ex : 2250545061716 - Tu peux laisser vide"></div>
-<div class="etape"><b>3️⃣ C'EST QUOI TON SUJET ?</b><select id="cat"><option value="quotidien">📅 Quotidien - Ma journée</option><option value="inter">🌍 International - Info du monde</option><option value="sport">⚽ Sport - Match, Foot</option><option value="politique">🏛️ Politique</option><option value="culture">🎤 Culture - Musique, Danse</option><option value="business">💰 Business - Vente, Commerce</option><option value="talent">🔥 Talent - Je chante, je danse</option><option value="confession">👻 Confession - Anonyme</option><option value="live">🔴 LIVE</option></select></div>
-<div class="etape"><b>4️⃣ ÉCRIS TON TEXTE ICI 👇</b><textarea id="txt" rows="4" placeholder="Écris ici... Ex : Aujourd'hui à Cocody, j'ai vendu 10 bissap, je suis trop contente !"></textarea>
-<label style="display:block;background:#000;padding:13px;border-radius:12px;border:1px dashed gold;cursor:pointer;text-align:center" for="photoFile">📸 TU VEUX AJOUTER UNE PHOTO OU VIDÉO ? CLIQUE ICI (pas obligatoire)</label><input id="photoFile" type="file" accept="image/*,video/*" style="display:none" onchange="voirPhoto(event)"><img id="preview" style="width:100%;border-radius:12px;display:none;margin-top:8px"><video id="previewVideo" controls style="width:100%;border-radius:12px;display:none;margin-top:8px"></video></div>
-<button class="btn btn-red" style="width:100%;font-size:18px;padding:16px" onclick="publier()">🚀 PUBLIER MON TEXTE +10 PTS</button>
-<p id="publieRes" style="text-align:center;color:gold;margin-top:8px"></p></div>
+<div id="recaptcha-container"></div>
 
-<div class="box" style="border:2px solid #ff2d55;text-align:left"><h2>🌍 INFOS - INTERNATIONAL / SPORT / POLITIQUE</h2>
-<div id="newsList">
-<div class="news" data-cat="inter"><b>🇨🇮 ABIDJAN - International :</b> Le marché de Treichville est en feu ce matin ! <span style="color:#888">• Il y a 10 min • 🔥 1.2k</span></div>
-<div class="news" data-cat="sport"><b>⚽ SPORT - CAN :</b> La Côte d'Ivoire gagne 2-1 contre le Sénégal ! <span style="color:#888">• Il y a 20 min • ⚽ 5.2k</span></div>
-<div class="news" data-cat="politique"><b>🏛️ POLITIQUE - DAKAR :</b> Nouvelle décision importante au Sénégal. <span style="color:#888">• Il y a 35 min • 🏛️ 2.8k</span></div>
-<div class="news" data-cat="culture"><b>🎤 CULTURE - BAMAKO :</b> Le concert de Mariam Traoré fait le buzz. <span style="color:#888">• Il y a 40 min • 🎤 2.1k</span></div>
-<div class="news" data-cat="sport"><b>⚽ SPORT - LAGOS :</b> Victor Osimhen marque encore ! <span style="color:#888">• Il y a 1h • ⚽ 3.4k</span></div>
-<div class="news" data-cat="inter"><b>🇫🇷 PARIS - International :</b> Les Africains de Paris préparent un grand festival NOVA SHUYA. <span style="color:#888">• Il y a 1h • 🇫🇷 1.5k</span></div>
-</div>
-<textarea id="newsTxt" placeholder="Tu as une info ? International, Sport, Politique..."></textarea><select id="newsCat"><option value="inter">🌍 International</option><option value="sport">⚽ Sport</option><option value="politique">🏛️ Politique</option><option value="culture">🎤 Culture</option><option value="business">💰 Business</option><option value="quotidien">📅 Quotidien</option></select><button class="btn btn-red" style="width:100%" onclick="publierNews()">📰 PUBLIER MON INFO +10</button></div>
+<p id="authMessage" class="message" role="status" aria-live="polite"></p>
 
-<div style="padding:0 12px"><h2 style="margin:12px 0">📰 FIL D'ACTUALITÉ DES UTILISATEURS</h2><p style="font-size:13px;color:#aaa">❤️ J'aime • 💬 Commenter • ↗️ Partager • 💬 Message privé</p></div>
-<div id="feed"></div>
+<p class="muted">Les SMS peuvent être payants selon le pays. Ne communique jamais ton code à quelqu’un.</p>
 </div>
 
-<!-- MESSAGES -->
-<div id="page-messages" class="page">
-<div class="box" style="border:2px solid #00c853"><h2>💬 MES MESSAGES PRIVÉS</h2><p style="color:#aaa">Cause en privé avec les talents NOVA SHUYA, comme sur WhatsApp.</p>
-<input id="rechercheMsg" placeholder="🔍 Chercher une personne..." oninput="filtrerMessages()">
-<div id="listeChats" style="text-align:left"></div></div>
-<div class="box" id="boxChat" style="border:2px solid gold;text-align:left;display:none"><h3 id="chatTitre">💬 Chat</h3><div id="chatMessages" style="max-height:300px;overflow-y:auto"></div><div style="display:flex;gap:6px"><input id="chatInput" placeholder="Écris ton message..." style="flex:1"><button class="btn btn-green" onclick="envoyerMessage()">➤ Envoyer</button></div><button class="btn" style="width:100%" onclick="fermerChat()">⬅️ Retour aux messages</button></div>
-<div class="box"><h3>💡 Astuce</h3><p style="text-align:left;font-size:13px;line-height:1.7">• Sur une publication, clique sur <b>💬 Message</b> pour causer en privé avec la personne<br>• Quand tu envoies un message, la personne reçoit une notification 🔔<br>• Tes messages restent enregistrés même si tu fermes le site</p></div>
+<div class="box hidden" id="profileBox">
+
+<h2>✅ Mon compte</h2>
+
+<p id="profileName"></p>
+
+<p id="profileContact" class="muted"></p>
+
+<button type="button" class="primary wide" id="logoutBtn">Se déconnecter</button>
+
+</div>
+</section>
+
+<section id="write" class="page">
+
+<div class="box">
+<h2>✍️ Écrire une publication</h2>
+
+<p class="muted">Connecte-toi pour publier un message visible par les autres membres.</p>
+
+<textarea id="postText" maxlength="2000" placeholder="Quoi de neuf ?"></textarea>
+
+<button type="button" class="primary wide" id="publishBtn">🚀 Publier</button>
+
+<p id="postMessage" class="message" role="status"></p>
 </div>
 
-<!-- NOTIFICATIONS -->
-<div id="page-notifs" class="page">
-<div class="box" style="border:2px solid gold"><h2>🔔 MES NOTIFICATIONS</h2><p style="color:#aaa">Tout ce qui se passe sur TES publications : Like, Comment, Partage, Message.</p><button class="btn btn-gold" style="width:100%" onclick="toutLire()">✅ TOUT MARQUER COMME LU</button><button class="btn" style="width:100%" onclick="testerNotifs()">🔔 TESTER UNE NOTIF (clique pour voir)</button><div id="listeNotifs" style="text-align:left;margin-top:10px"></div></div>
-<div class="box"><h3>⚙️ Tes notifications sont activées pour :</h3><div style="text-align:left;font-size:14px;line-height:1.8">❤️ Quelqu'un aime ton contenu<br>💬 Quelqu'un commente ton contenu<br>↗️ Quelqu'un partage ton contenu<br>💬 Quelqu'un t'envoie un message privé<br>🏆 Tu gagnes des points</div></div>
+</section>
+
+<section id="about" class="page">
+
+<div class="box">
+<h2>👑 NOVA SHUYA V22</h2>
+
+<p>Cette version contient l’inscription et la connexion par e-mail, la connexion par téléphone avec code SMS et le fil de publications Firebase.</p>
+
+<div class="notice">
+Les messages privés, les notifications, les photos et les vidéos ne sont pas encore intégrés dans cette version. Nous les ajouterons après validation des comptes et des publications.
 </div>
 
-<!-- TALENT -->
-<div id="page-talent" class="page">
-<div class="box"><div style="font-size:60px">👑</div><h2>Talent Nova - Les 12 Innovations</h2><p id="niv2">Niveau 1</p><h1 id="pts2" style="color:gold">0 pts</h1><div class="bar"><div id="barre2" style="width:0%"></div></div><p id="nextNiv">Plus que 100 pts pour niveau 2</p><button class="btn btn-gold" style="width:100%" onclick="daily()">🎁 DAILY REWARD +50</button></div>
-<div class="box" style="text-align:left"><h3>🏆 TOP TALENTS</h3><div id="topList"></div></div>
-<div class="box" style="text-align:left"><h3>📊 MES STATS</h3><div class="top-item"><span>📝 Publications</span><b id="sPosts">0</b></div><div class="top-item"><span>❤️ Likes</span><b id="sLikes">0</b></div><div class="top-item"><span>💬 Commentaires</span><b id="sComs">0</b></div></div>
-<div class="box" style="border:2px solid gold"><h2>1. 🔮 MYSTÈRE</h2><img id="mystImg" class="myst" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=400"><p style="color:gold;font-size:13px">Indice : Elle vient de Bamako, elle chante comme une reine</p><input id="devineNom" placeholder="C'est qui ?"><button class="btn btn-gold" style="width:100%" onclick="deviner()">🔮 JE DEVINE +50</button><p id="devineRes"></p></div>
-<div class="box" style="border:2px solid #a100ff"><h2>2. 🔮 ORACLE</h2><button class="opt" onclick="choisirOracle(this,'Mariam')">👑 Mariam va gagner</button><button class="opt" onclick="choisirOracle(this,'Aicha')">⭐ Aicha va gagner</button><button class="btn btn-purple" style="width:100%" onclick="validerOracle()">🔮 VALIDER +100 si juste</button><p id="oracleRes" style="color:gold"></p></div>
-<div class="box" style="border:2px solid #ff2d55"><h2>3. ⚔️ DUEL</h2><p><b>MARIAM 🇲🇱</b> : <span id="vA">128</span> VS <b>AICHA 🇸🇳</b> : <span id="vB">132</span></p><div class="bar2"><div id="bA" style="width:49%;background:#ff2d55"></div><div id="bB" style="width:51%;background:gold"></div></div><button class="btn btn-red" onclick="voterDuel('A')">🔥 VOTER MARIAM +5</button><button class="btn btn-gold" onclick="voterDuel('B')">⭐ VOTER AICHA +5</button></div>
-<div class="box" style="border:2px solid #ff2d55"><h2>4. 👑 BATTLE ROYALE</h2><div id="battleList" style="text-align:left"></div></div>
-<div class="box" style="border:2px dashed gold"><h2>5. 🎡 ROUE</h2><div id="roue">🎡</div><p id="roueRes" style="color:gold">Tourne pour gagner !</p><button class="btn btn-gold" style="width:100%" onclick="tournerRoue()">🎡 TOURNER +20</button></div>
-<div class="box" style="border:2px solid #00c6ff"><h2>6. 🎤 VOIX</h2><div class="card"><b>🎤 Aicha - Voix cachée</b><br><audio controls style="width:100%"><source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3"></audio><button class="btn" onclick="ajouter(5);alert('Vote voix +5')">❤️ Voter +5</button></div><textarea id="voixTxt" placeholder="Décris ta voix..."></textarea><button class="btn btn-blue" style="width:100%" onclick="publierVoix()">🎤 PUBLIER MA VOIX +10</button></div>
-<div class="box" style="border:2px solid #00c853"><h2>7. 🕰️ CAPSULE</h2><textarea id="capTxt" placeholder="Dans 1 mois je serai star !"></textarea><select id="capDelai"><option value="7">Ouvrir dans 7 jours</option><option value="30">Ouvrir dans 30 jours</option></select><button class="btn btn-green" style="width:100%" onclick="creerCapsule()">🕰️ SCELLER</button><div id="capList" style="text-align:left"></div></div>
-<div class="box" style="border:2px solid #00c6ff"><h2>8. 📍 RADAR</h2><select id="ville" onchange="changerVille()"><option value="Abidjan">📍 Abidjan 🇨🇮</option><option value="Dakar">📍 Dakar 🇸🇳</option><option value="Bamako">📍 Bamako 🇲🇱</option><option value="Lagos">📍 Lagos 🇳🇬</option><option value="Paris">📍 Paris 🇫🇷</option></select><div id="radarRes" style="text-align:left;margin-top:10px"></div></div>
-<div class="box" style="border:2px dashed #ff2d55"><h2>9. 🎯 DEFI 24H</h2><p><b>Défi :</b> Fais rire en 10 secondes 😂</p><textarea id="defiTxt" placeholder="Décris ta vidéo..."></textarea><button class="btn btn-red" style="width:100%" onclick="participerDefi()">🎯 JE PARTICIPE +10</button></div>
-<div class="box"><h2>10. 👻 CONFESSION</h2><textarea id="confTxt" placeholder="Ta confession anonyme..."></textarea><button class="btn" style="width:100%" onclick="publierConf()">👻 PUBLIER +5</button></div>
-<div class="box" style="border:2px solid #00c853"><h2>11. 🛍️ MARCHÉ</h2><div class="card"><b>💇‍♀️ Aicha - Coiffure - Abidjan</b><br>💰 10.000 FCFA • 📍 Cocody<br><button class="btn btn-green" onclick="window.open('https://wa.me/2250545061716','_blank')">💬 Commander</button></div><input id="marTitre" placeholder="Ton produit"><input id="marPrix" placeholder="Ton prix"><button class="btn btn-green" style="width:100%" onclick="publierMarche()">🛍️ METTRE EN VENTE</button></div>
-<div class="box" style="border:2px solid gold"><h2>12. ⭐ POINTS + NIVEAUX</h2><p>🌱 Nouveau → 🔥 Talent → ⭐ Star → 👑 Légende → 👑👑 ROI</p><button class="btn btn-gold" style="width:100%" onclick="daily()">🎁 DAILY REWARD +50</button></div>
 </div>
+</section>
 
-<!-- LIVE -->
-<div id="page-live" class="page">
-<div class="box" style="border:2px solid #ff2d55"><span class="badge">● LIVE</span> <h2>🔴 LIVE NOVA SHUYA - EN DIRECT</h2><p id="liveStatus">Aucun LIVE.</p><input id="liveNom" placeholder="Ton nom LIVE"><input id="liveTitre" placeholder="Titre LIVE - Ex : Je chante pour vous"><button class="btn btn-red" style="width:100%" onclick="creerLive()">🔴 CRÉER MON LIVE</button><button class="btn" style="width:100%" onclick="regarderLive()">👀 REGARDER LE LIVE</button><div id="liveList"></div></div>
-<div class="box"><b>🔴 Animateur NOVA - LIVE NOVA</b><p>🎤 En direct • 1.2k viewers • Abidjan</p><button class="btn btn-red" style="width:100%" onclick="regarderLive()">👀 Rejoindre le LIVE</button></div>
-<div class="box"><
+<nav id="nav">
+<button type="button" class="active" data-page="home">🏠 Accueil</button>
+<button type="button" data-page="write">✍️ Publier</button>
+<button type="button" data-page="account">👤 Compte</button>
+<button type="button" data-page="about">ℹ️ Infos</button>
+</nav>
+
+<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-database-compat.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/intl-tel-input@25.3.1/build/js/intlTelInput.min.js"></script>
+
+<script>
+'use strict';
+
+// CONFIGURATION FIREBASE NOVA SHUYA
+
+const firebaseConfig = {
+apiKey: "AIzaSyAJMrnzb5-6SvqP-dKEDrGhrHZ_uMn6nZs",
+authDomain: "novashuya.firebaseapp.com",
+databaseURL: "https://novashuya-default-rtdb.firebaseio.com",
+projectId: "novashuya",
+storageBucket: "novashuya.firebasestorage.app",
+messagingSenderId: "597908625291",
+appId: "1:597908625291:web:2b8f00eb20e6eddffe018e",
+measurementId: "G-GJYXTW0HKD"
+};
+
+let auth = null;
+let db = null;
+let currentUser = null;
+let phoneWidget = null;
+let confirmationResult = null;
+let recaptchaVerifier = null;
+let postsQuery = null;
+let postsCallback = null;
+
+const $ = id => document.getElementById(id);
+
+function message(id,text,type='info'){
+const element=$(id);
+if(!element)return;
+element.textContent=text;
+element.className='message '+type;
+}
+
+function friendlyError(error){
+
+const code=error&&error.code?error.code:'';
+
+const known={
+
+'auth/email-already-in-use':'Cette adresse e-mail possède déjà un compte. Utilise « Se connecter ».',
+
+'auth/invalid-email':'L’adresse e-mail n’est pas valide.',
+
+'auth/weak-password':'Le mot de passe doit contenir au moins 6 caractères.',
+
+'auth/user-not-found':'Aucun compte trouvé avec cette adresse e-mail.',
+
+'auth/wrong-password':'Mot de passe incorrect.',
+
+'auth/invalid-credential':'Adresse e-mail ou mot de passe incorrect.',
+
+'auth/unauthorized-domain':'Ce domaine n’est pas autorisé par Firebase. Ouvre le site depuis novashuya.web.app ou ajoute le domaine exact dans Firebase Authentication.',
+
+'auth/network-request-failed':'Connexion Internet indisponible. Vérifie Internet puis réessaie.',
+
+'auth/too-many-requests':'Trop de tentatives. Attends avant de réessayer.',
+
+'auth/invalid-phone-number':'Numéro invalide. Vérifie le pays et le numéro.',
+
+'auth/missing-phone-number':'Entre un numéro de téléphone.',
+
+'auth/quota-exceeded':'Le quota de SMS est atteint. Réessaie plus tard.',
+
+'auth/captcha-check-failed':'La vérification anti-robot a échoué. Recharge la page et réessaie.',
+
+'auth/invalid-verification-code':'Le code SMS est incorrect.',
+
+'auth/code-expired':'Le code SMS a expiré. Demande un nouveau code.',
+
+'auth/session-expired':'La vérification a expiré. Demande un nouveau code.',
+
+'auth/operation-not-allowed':'Cette méthode n’est pas activée dans Firebase Authentication.',
+
+'PERMISSION_DENIED':'Firebase a refusé l’accès à la base de données. Vérifie les règles Realtime Database.'
+
+};
+
+return known[code]||(error&&error.message)||'Une erreur inconnue est survenue.';
+}
+
+function showPage(pageId){
+
+document.querySelectorAll('.page').forEach(page=>{
+page.classList.toggle('active',page.id===pageId);
+});
+
+document.querySelectorAll('#nav button').forEach(button=>{
+button.classList.toggle('active',button.dataset.page===pageId);
+});
+
+}
+
+function getE164Phone(){
+
+if(phoneWidget){
+
+try{
+
+if(typeof phoneWidget.isValidNumber==='function'&&!phoneWidget.isValidNumber())return '';
+
+const number=phoneWidget.getNumber();
+
+return number&&number.charAt(0)==='+'?number:'';
+
+}catch(error){
+
+return '';
+
+}
+
+}
+
+const raw=$('phone').value.trim().replace(/[\s().-]/g,'');
+
+return /^\+[1-9]\d{7,14}$/.test(raw)?raw:'';
+
+}
+
+function clearRecaptcha(){
+
+if(recaptchaVerifier){
+
+try{recaptchaVerifier.clear();}catch(error){}
+
+recaptchaVerifier=null;
+
+}
+
+$('recaptcha-container').innerHTML='';
+
+}
+
+// CRÉATION DU COMPTE PAR E-MAIL
+
+async function createAccount(){
+
+if(!auth||!db){
+
+message('authMessage','Firebase ne s’est pas initialisé. Vérifie ta connexion Internet et recharge la page.','error');
+
+return;
+
+}
+
+const name=$('fullName').value.trim();
+const email=$('email').value.trim();
+const password=$('password').value;
+
+if(!name)return message('authMessage','Entre ton nom ou pseudonyme.','error');
+
+if(!email)return message('authMessage','Entre ton adresse e-mail.','error');
+
+if(password.length<6)return message('authMessage','Le mot de passe doit contenir au moins 6 caractères.','error');
+
+const button=$('signupBtn');
+
+button.disabled=true;
+button.textContent='Création en cours…';
+
+message('authMessage','Connexion à Firebase…','info');
+
+try{
+
+const credential=await auth.createUserWithEmailAndPassword(email,password);
+
+try{
+
+await credential.user.updateProfile({displayName:name});
+
+}catch(profileError){
+
+console.warn('Profil Firebase non actualisé :',profileError);
+
+}
+
+try{
+
+await db.ref('users/'+credential.user.uid).update({
+
+displayName:name,
+email:email,
+createdAt:firebase.database.ServerValue.TIMESTAMP
+
+});
+
+message('authMessage','Compte créé avec succès ! Tu es connecté.','success');
+
+}catch(databaseError){
+
+message('authMessage','Ton compte est créé et connecté, mais le profil n’a pas pu être enregistré dans la base : '+friendlyError(databaseError),'error');
+
+}
+
+}catch(error){
+
+message('authMessage',friendlyError(error),'error');
+
+}finally{
+
+button.disabled=false;
+button.textContent='Créer mon compte';
+
+}
+
+}
+
+// CONNEXION PAR E-MAIL
+
+async function login(){
+
+if(!auth)return message('authMessage','Firebase Authentication n’est pas prêt. Recharge la page.','error');
+
+const email=$('email').value.trim();
+const password=$('password').value;
+
+if(!email||!password)return message('authMessage','Entre ton adresse e-mail et ton mot de passe.','error');
+
+const button=$('loginBtn');
+
+button.disabled=true;
+button.textContent='Connexion…';
+
+try{
+
+await auth.signInWithEmailAndPassword(email,password);
+
+message('authMessage','Connexion réussie !','success');
+
+}catch(error){
+
+message('authMessage',friendlyError(error),'error');
+
+}finally{
+
+button.disabled=false;
+button.textContent='Se connecter';
+
+}
+
+}
+
+// ENVOI DU CODE SMS
+
+async function sendPhoneCode(){
+
+if(!auth)return message('authMessage','Firebase Authentication n’est pas prêt. Recharge la page.','error');
+
+const phoneNumber=getE164Phone();
+
+if(!phoneNumber){
+
+return message('authMessage','Numéro invalide. Choisis ton pays et saisis ton numéro. Si le sélecteur ne charge pas, écris le numéro au format international, par exemple +2250700000000.','error');
+
+}
+
+const button=$('sendCodeBtn');
+
+button.disabled=true;
+button.textContent='Envoi du SMS…';
+
+message('authMessage','Préparation de la vérification anti-robot…','info');
+
+try{
+
+clearRecaptcha();
+
+recaptchaVerifier=new firebase.auth.RecaptchaVerifier('recaptcha-container',{
+size:'normal'
+});
+
+await recaptchaVerifier.render();
+
+confirmationResult=await auth.signInWithPhoneNumber(phoneNumber,recaptchaVerifier);
+
+$('phoneCodeArea').classList.remove('hidden');
+
+$('smsCode').focus();
+
+message('authMessage','Code envoyé par SMS. Saisis les 6 chiffres reçus.','success');
+
+}catch(error){
+
+clearRecaptcha();
+
+message('authMessage',friendlyError(error),'error');
+
+}finally{
+
+button.disabled=false;
+button.textContent='Envoyer un code SMS';
+
+}
+
+}
+
+// VÉRIFICATION DU CODE SMS
+
+async function verifyPhoneCode(){
+
+if(!confirmationResult)return message('authMessage','Demande d’abord un code SMS.','error');
+
+const code=$('smsCode').value.trim();
+
+if(!/^\d{6}$/.test(code))return message('authMessage','Entre le code à 6 chiffres reçu par SMS.','error');
+
+const button=$('verifyCodeBtn');
+
+button.disabled=true;
+button.textContent='Vérification…';
+
+try{
+
+const result=await confirmationResult.confirm(code);
+
+const user=result.user;
+
+const name=$('fullName').value.trim()||user.displayName||'Membre NOVA SHUYA';
+
+if(!user.displayName){
+
+try{await user.updateProfile({displayName:name});}
+catch(error){console.warn(error);}
+
+}
+
+try{
+
+const ref=db.ref('users/'+user.uid);
+
+const existing=await ref.once('value');
+
+const data={
+
+displayName:name,
+
+phoneNumber:user.phoneNumber||getE164Phone(),
+
+lastLoginAt:firebase.database.ServerValue.TIMESTAMP
+
+};
+
+if(!existing.exists())data.createdAt=firebase.database.ServerValue.TIMESTAMP;
+
+await ref.update(data);
+
+message('authMessage','Numéro vérifié. Ton compte est connecté !','success');
+
+}catch(databaseError){
+
+message('authMessage','Téléphone vérifié et compte connecté, mais profil non enregistré dans la base : '+friendlyError(databaseError),'error');
+
+}
+
+confirmationResult=null;
+
+$('phoneCodeArea').classList.add('hidden');
+
+$('smsCode').value='';
+
+clearRecaptcha();
+
+}catch(error){
+
+message('authMessage',friendlyError(error),'error');
+
+}finally{
+
+button.disabled=false;
+button.textContent='Vérifier le code et continuer';
+
+}
+
+}
+
+function changePhone(){
+
+confirmationResult=null;
+
+$('phoneCodeArea').classList.add('hidden');
+
+$('smsCode').value='';
+
+clearRecaptcha();
+
+message('authMessage','Corrige le numéro puis demande un nouveau code.','info');
+
+}
+
+// PUBLICATIONS
+
+async function publishPost(){
+
+if(!currentUser){
+
+message('postMessage','Connecte-toi avant de publier.','error');
+
+showPage('account');
+
+return;
+
+}
+
+const text=$('postText').value.trim();
+
+if(!text)return message('postMessage','Écris quelque chose avant de publier.','error');
+
+const button=$('publishBtn');
+
+button.disabled=true;
+
+try{
+
+await db.ref('posts').push({
+
+uid:currentUser.uid,
+
+author:currentUser.displayName||currentUser.email||currentUser.phoneNumber||'Membre NOVA SHUYA',
+
+text:text,
+
+createdAt:firebase.database.ServerValue.TIMESTAMP
+
+});
+
+$('postText').value='';
+
+message('postMessage','Publication envoyée !','success');
+
+showPage('home');
+
+}catch(error){
+
+message('postMessage',friendlyError(error),'error');
+
+}finally{
+
+button.disabled=false;
+
+}
+
+}
+
+// AFFICHAGE DES PUBLICATIONS
+
+function displayPosts(snapshot){
+
+const feed=$('feed');
+
+feed.innerHTML='';
+
+if(!snapshot.exists()){
+
+const p=document.createElement('p');
+
+p.className='muted';
+
+p.textContent='Aucune publication pour le moment. Sois le premier à écrire !';
+
+feed.appendChild(p);
+
+return;
+
+}
+
+const posts=[];
+
+snapshot.forEach(child=>posts.push(child.val()));
+
+posts.reverse().forEach(post=>{
+
+const article=document.createElement('article');
+
+article.className='post';
+
+const head=document.createElement('div');
+
+head.className='post-head';
+
+const author=document.createElement('span');
+
+author.className='post-name';
+
+author.textContent=post.author||'Membre NOVA SHUYA';
+
+const date=document.createElement('span');
+
+date.className='post-date';
+
+date.textContent=post.createdAt?new Date(post.createdAt).toLocaleString('fr-FR'):'À l’instant';
+
+const body=document.createElement('p');
+
+body.className='post-text';
+
+body.textContent=post.text||'';
+
+head.append(author,date);
+
+article.append(head,body);
+
+feed.appendChild(article);
+
+});
+
+}
+
+// GESTION DU COMPTE
+
+function updateAccount(user){
+
+currentUser=user;
+
+if(user){
+
+$('accountStatus').textContent='Connecté • '+(user.displayName||user.email||user.phoneNumber||'Membre');
+
+$('authBox').classList.add('hidden');
+
+$('profileBox').classList.remove('hidden');
+
+$('profileName').textContent='Nom : '+(user.displayName||'Membre NOVA SHUYA');
+
+$('profileContact').textContent=user.email?'E-mail : '+user.email:'Téléphone : '+(user.phoneNumber||'Non renseigné');
+
+}else{
+
+$('accountStatus').textContent='Non connecté • Connecte-toi pour participer';
+
+$('authBox').classList.remove('hidden');
+
+$('profileBox').classList.add('hidden');
+
+}
+
+}
+
+// INITIALISATION ET BRANCHEMENT DES BOUTONS
+
+function startApp(){
+
+document.querySelectorAll('#nav button').forEach(button=>{
+
+button.addEventListener('click',()=>showPage(button.dataset.page));
+
+});
+
+$('signupBtn').addEventListener('click',createAccount);
+
+$('loginBtn').addEventListener('click',login);
+
+$('sendCodeBtn').addEventListener('click',sendPhoneCode);
+
+$('verifyCodeBtn').addEventListener('click',verifyPhoneCode);
+
+$('changePhoneBtn').addEventListener('click',changePhone);
+
+$('publishBtn').addEventListener('click',publishPost);
+
+$('logoutBtn').addEventListener('click',async()=>{
+
+if(!auth)return;
+
+try{
+
+await auth.signOut();
+
+message('authMessage','Tu es déconnecté.','info');
+
+}catch(error){
+
+message('authMessage',friendlyError(error),'error');
+
+}
+
+});
+
+// SÉLECTEUR INTERNATIONAL
+
+if(window.intlTelInput&&$('phone')){
+
+try{
+
+phoneWidget=window.intlTelInput($('phone'),{
+
+initialCountry:'ci',
+separateDialCode:true,
+nationalMode:true,
+
+preferredCountries:['ci','fr','us','gb','gh','sn','bf','ml','ng','za'],
+
+utilsScript:'https://cdn.jsdelivr.net/npm/intl-tel-input@25.3.1/build/js/utils.js'
+
+});
+
+}catch(error){
+
+console.warn('Sélecteur international indisponible :',error);
+
+}
+
+}
+
+// VÉRIFICATION FIREBASE
+
+if(!window.firebase||!firebase.initializeApp){
+
+$('accountStatus').textContent='Firebase SDK non chargé : vérifie Internet ou les scripts Firebase.';
+
+$('feed').textContent='Impossible de charger Firebase. Vérifie ta connexion Internet.';
+
+message('authMessage','Firebase SDK non chargé. Les boutons sont actifs, mais les comptes nécessitent une connexion à Firebase.','error');
+
+return;
+
+}
+
+try{
+
+if(!firebase.apps.length)firebase.initializeApp(firebaseConfig);
+
+auth=firebase.auth();
+
+db=firebase.database();
+
+$('accountStatus').textContent='Firebase connecté • Vérification du compte…';
+
+auth.onAuthStateChanged(updateAccount,error=>{
+
+$('accountStatus').textContent='Erreur de vérification du compte';
+
+message('authMessage',friendlyError(error),'error');
+
+});
+
+postsQuery=db.ref('posts').limitToLast(100);
+
+postsCallback=snapshot=>displayPosts(snapshot);
+
+postsQuery.on('value',postsCallback,error=>{
+
+$('feed').textContent=friendlyError(error);
+
+});
+
+}catch(error){
+
+$('accountStatus').textContent='Erreur d’initialisation Firebase';
+
+$('feed').textContent=friendlyError(error);
+
+message
